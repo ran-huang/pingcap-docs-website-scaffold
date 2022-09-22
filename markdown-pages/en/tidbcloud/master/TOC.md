@@ -7,6 +7,7 @@
   - [Architecture](/tidb-cloud/tidb-cloud-intro.md#architecture)
   - [High Availability](/tidb-cloud/high-availability-with-multi-az.md)
   - [MySQL Compatibility](/mysql-compatibility.md)
+  - [Roadmap](/tidb-cloud/tidb-cloud-roadmap.md)
 - Get Started
   - [Try Out TiDB Cloud](/tidb-cloud/tidb-cloud-quickstart.md)
   - [Try Out HTAP](/tidb-cloud/tidb-cloud-htap-quickstart.md)
@@ -93,7 +94,6 @@
   - [Pause or Resume a TiDB Cluster](/tidb-cloud/pause-or-resume-tidb-cluster.md)
   - [Upgrade a TiDB Cluster](/tidb-cloud/upgrade-tidb-cluster.md)
   - [Delete a TiDB Cluster](/tidb-cloud/delete-tidb-cluster.md)
-  - [Use TiDB Cloud API (Beta)](/tidb-cloud/api-overview.md)
 - Migrate Data
   - [Import Sample Data](/tidb-cloud/import-sample-data.md)
   - Migrate Data into TiDB
@@ -173,6 +173,9 @@
   - [Billing Details](/tidb-cloud/tidb-cloud-billing.md#billing-details)
   - [Credits](/tidb-cloud/tidb-cloud-billing.md#credits)
   - [Payment Method Setting](/tidb-cloud/tidb-cloud-billing.md#payment-method)
+- API
+  - [API Overview](/tidb-cloud/api-overview.md)
+  - [API Reference](https://docs.pingcap.com/tidbcloud/api/v1beta)
 - Reference
   - TiDB Cluster Architecture
     - [Overview](/tidb-architecture.md)
@@ -401,7 +404,6 @@
         - [`USER_PRIVILEGES`](/information-schema/information-schema-user-privileges.md)
         - [`VIEWS`](/information-schema/information-schema-views.md)
   - [System Variables](/system-variables.md)
-  - [API Reference](https://docs.pingcap.com/tidbcloud/api/v1beta)
   - Storage Engines
     - TiKV
         - [TiKV Overview](/tikv-overview.md)
