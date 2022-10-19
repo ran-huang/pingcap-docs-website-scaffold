@@ -40,7 +40,7 @@ if [ "$1" == "develop" ] || [ "$1" == "dev" ]; then
 fi
 
 if [ ! -e website-docs/.git ]; then
-  git clone GitHub - pingcap/website-docs: The next generation of PingCAP Docs. Powered by Gatsby ⚛️.
+  git clone https://github.com/pingcap/website-docs
 fi
 
 if [ ! -e website-docs/docs/markdown-pages ]; then
