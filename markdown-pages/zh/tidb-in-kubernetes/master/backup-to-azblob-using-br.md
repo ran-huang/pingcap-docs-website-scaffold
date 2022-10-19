@@ -7,36 +7,36 @@ summary: 介绍如何使用 BR 备份 TiDB 集群数据到 Azure Blob Storage �
 
 本文介绍如何将运行在 Kubernetes 环境中的 TiDB 集群数据备份到 Azure Blob Storage 上。其中包括以下两种备份方式：
 
-1. 全量备份。
+1. 快照备份。
 2. 日志备份。
 
-在恢复时可以通过全量备份的备份方式产生的备份数据将 TiDB 集群恢复到该备份的时刻点。再以该时刻点作为起始时刻点，也可以通过日志备份产生的备份数据将 TiDB 集群恢复到历史任意时刻点。
+在恢复数据时，你可以通过[全量恢复](restore-from-azblob-using-br.md#全量恢复的使用方法)将 TiDB 集群恢复到快照备份的时刻点。你也可以通过快照备份与日志备份产生的备份数据将 TiDB 集群恢复到历史任意时刻点，即 [Point-in-Time Recovery (PITR)](restore-from-azblob-using-br.md#pitr-恢复的使用方法)。
 
 本文使用的备份方式基于 TiDB Operator 的 Custom Resource Definition(CRD) 实现，底层使用 [BR](https://docs.pingcap.com/zh/tidb/stable/backup-and-restore-tool) 获取集群数据，然后再将数据上传到 Azure Blob Storage 上。BR 全称为 Backup & Restore，是 TiDB 分布式备份恢复的命令行工具，用于对 TiDB 集群进行数据备份和恢复。
 
 ## 使用场景
 
-如果你对数据备份有以下要求，可考虑使用 BR 的**全量备份**方式将 TiDB 集群数据以 [Ad-hoc 备份](#ad-hoc-备份)或[定时全量备份](#定时全量备份)的方式备份至 Azure Blob Storage 上：
+如果你对数据备份有以下要求，可考虑使用 BR 的**快照备份**方式将 TiDB 集群数据以 [Ad-hoc 备份](#ad-hoc-备份)或[定时快照备份](#定时快照备份)的方式备份至 Azure Blob Storage 上：
 
 - 需要备份的数据量较大（大于 1 TB），而且要求备份速度较快
 - 需要直接备份数据的 SST 文件（键值对）
 
-如果你对数据备份有以下要求，可考虑使用 BR 的**日志备份**方式将 TiDB 集群数据以[Ad-hoc 备份](#ad-hoc-备份)的方式备份至 Azure Blob Storage 上（同时也需要配合全量备份的数据，来更高效的[恢复](restore-from-azblob-using-br.md#PITR-恢复的使用方法)数据）：
+如果你对数据备份有以下要求，可考虑使用 BR 的**日志备份**方式将 TiDB 集群数据以[Ad-hoc 备份](#ad-hoc-备份)的方式备份至 Azure Blob Storage 上（同时也需要配合快照备份的数据，来更高效的[恢复](restore-from-azblob-using-br.md#pitr-恢复的使用方法)数据）：
 
-- 需要在新集群上恢复备份集群的历史任意时刻点快照
+- 需要在新集群上恢复备份集群的历史任意时刻点快照（PITR）
 - 数据的 RPO 在分钟级别
 
 如有其他备份需求，请参考[备份与恢复简介](backup-restore-overview.md)选择合适的备份方式。
 
 > **注意：**
 >
-> - 全量备份只支持 TiDB v3.1 及以上版本。
+> - 快照备份只支持 TiDB v3.1 及以上版本。
 > - 日志备份只支持 TiDB v6.2 及以上版本。
 > - 使用 BR 备份出的数据只能恢复到 TiDB 数据库中，无法恢复到其他数据库中。
 
 ## Ad-hoc 备份
 
-Ad-hoc 备份支持全量备份，也支持[启动](#启动日志备份)和[停止](#停止日志备份)日志备份任务，以及[清理](#清理日志备份数据)日志备份数据等操作。
+Ad-hoc 备份支持快照备份，也支持[启动](#启动日志备份)和[停止](#停止日志备份)日志备份任务，以及[清理](#清理日志备份数据)日志备份数据等操作。
 
 要进行 Ad-hoc 备份，你需要创建一个自定义的 `Backup` custom resource (CR) 对象来描述本次备份。创建好 `Backup` 对象后，TiDB Operator 根据这个对象自动完成具体的备份过程。如果备份过程中出现错误，程序不会自动重试，此时需要手动处理。
 
@@ -66,7 +66,7 @@ Ad-hoc 备份支持全量备份，也支持[启动](#启动日志备份)和[停�
     >
     > 授予的账户所拥有的角色至少拥有对 blob 修改的权限（例如[参与者](https://learn.microsoft.com/zh-cn/azure/role-based-access-control/built-in-roles#contributor)）。
     >
-    > 下文为了叙述简洁，统一使用名为 `azblob-secret` 的 secret 对象。
+    > 在创建 secret 对象的时候，你可以自定义它的名字。下文为了叙述简洁，统一使用名为 `azblob-secret` 的 secret 对象。
 
 4. 如果你使用的 TiDB 版本低于 v4.0.8，你还需要完成以下步骤。如果你使用的 TiDB 为 v4.0.8 及以上版本，请跳过这些步骤。
 
@@ -80,11 +80,11 @@ Ad-hoc 备份支持全量备份，也支持[启动](#启动日志备份)和[停�
         kubectl create secret generic backup-demo1-tidb-secret --from-literal=password=${password} --namespace=test1
         ```
 
-### 全量备份：备份数据到 Azure Blob Storage
+### 快照备份：备份数据到 Azure Blob Storage
 
 根据上一步选择的远程存储访问授权方式，你需要使用下面对应的方法将数据导出到 Azure Blob Storage 上：
 
-+ 在 `backup-test` 这个 namespace 中创建一个名为 `demo1-full-backup-azblob` 的 `Backup` CR，用于全量备份：
++ 在 `backup-test` 这个 namespace 中创建一个名为 `demo1-full-backup-azblob` 的 `Backup` CR，用于快照备份：
 
     {{< copyable "shell-regular" >}}
 
@@ -136,6 +136,8 @@ Ad-hoc 备份支持全量备份，也支持[启动](#启动日志备份)和[停�
 - 如果你使用的 TiDB 为 v4.0.8 及以上版本, BR 会自动调整 `tikv_gc_life_time` 参数，不需要配置 `spec.tikvGCLifeTime` 和 `spec.from` 字段。
 - 更多 `Backup` CR 字段的详细解释参考 [Backup CR 字段介绍](backup-restore-cr.md#backup-cr-字段介绍)。
 
+#### 查看快照备份的状态
+
 创建好 `Backup` CR 后，TiDB Operator 会根据 `Backup` CR 自动开始备份。你可以通过如下命令查看备份状态：
 
 {{< copyable "shell-regular" >}}
@@ -144,13 +146,21 @@ Ad-hoc 备份支持全量备份，也支持[启动](#启动日志备份)和[停�
 kubectl get bk -n backup-test -o wide
 ```
 
+从上述命令的输出中，你可以找到描述名为 `demo1-full-backup-azblob` 的 `Backup` CR 的如下信息，其中 `Commit Ts` 表示快照备份的时刻点：
+
+```
+Status:
+Backup Path:  azure://my-container/my-full-backup-folder/
+Commit Ts:    436568622965194754
+```
+
 ### 日志备份：日志备份任务以及日志备份数据的管理
 
-日志备份任务的启动和停止，以及清理日志备份数据等操作都使用了相同的 `Backup` CR。本节示例创建了名为 `demo1-log-backup-azblob` 的 `Backup` CR。具体管理操作如以下几个流程所示。
+你可以使用一个 `Backup` CR 来描述日志备份任务的启动、停止以及清理日志备份数据等操作。本节示例创建了名为 `demo1-log-backup-azblob` 的 `Backup` CR。具体操作如下所示。
 
 #### 启动日志备份
 
-+ 在 `backup-test` 这个 namespace 中产生一个名为 `demo1-log-backup-azblob` 的 `Backup` CR。
+1. 在 `backup-test` 这个 namespace 中创建一个名为 `demo1-log-backup-azblob` 的 `Backup` CR。
 
     {{< copyable "shell-regular" >}}
 
@@ -181,7 +191,7 @@ kubectl get bk -n backup-test -o wide
     
     ```
 
-+ 等待启动操作完成：
+2. 等待启动操作完成：
 
     ```shell
     kubectl get jobs -n backup-test
@@ -192,7 +202,7 @@ kubectl get bk -n backup-test -o wide
     backup-demo1-log-backup-azblob-log-start   1/1           ...
     ```
 
-+ 查看新增的 `Backup` CR：
+3. 查看新增的 `Backup` CR：
 
     ```shell
     kubectl get backups -n backup-test
@@ -215,11 +225,11 @@ kubectl get bk -n backup-test -o wide
     kubectl describe backup -n backup-test
     ```
 
-    我们会找到描述名为 `demo1-log-backup-azblob` 的 `Backup` CR 的如下信息，其中 `Log Checkpoint Ts` 表示日志备份可恢复的最近时间点：
+    从上述命令的输出中，你可以找到描述名为 `demo1-log-backup-azblob` 的 `Backup` CR 的如下信息，其中 `Log Checkpoint Ts` 表示日志备份可恢复的最近时间点：
 
     ```
     Status:
-    Backup Path:  azure://test/log-backup-test-1/
+    Backup Path:  azure://my-container/my-log-backup-folder/
     Commit Ts:    436568622965194754
     Conditions:
         Last Transition Time:  2022-10-10T04:45:20Z
@@ -238,7 +248,7 @@ kubectl get bk -n backup-test -o wide
 
 #### 停止日志备份
 
-+ 由于我们已经在开启日志备份的时候已经创建了名为 `demo1-log-backup-azblob` 的 `Backup` CR，因此可以直接更新该 `Backup` CR 的配置，来激活停止日志备份的操作，具体操作激活优先级可参考 [tidb-operator#4682](https://github.com/pingcap/tidb-operator/pull/4682)。
++ 由于我们已经在开启日志备份的时候已经创建了名为 `demo1-log-backup-azblob` 的 `Backup` CR，因此可以直接更新该 `Backup` CR 的配置，来激活停止日志备份的操作。操作激活优先级从高到低分别是停止日志备份任务、删除日志备份数据和开启日志备份任务。
 
     {{< copyable "shell-regular" >}}
 
@@ -270,15 +280,15 @@ kubectl get bk -n backup-test -o wide
 
     ```
 
-> **提示：**
->
-> 当然，我们也可以采用和启动日志备份时相同的方法来停止日志备份，并且已经被创建过的 `Backup` CR 会因此被更新。
+<Tip>
+你也可以采用和启动日志备份时相同的方法来停止日志备份，已经被创建过的 `Backup` CR 会因此被更新。
+</Tip>
 
 ---
 
 #### 清理日志备份数据
 
-+ 由于我们已经在开启日志备份的时候已经创建了名为 `demo1-log-backup-azblob` 的 `Backup` CR，因此可以直接更新该 `Backup` CR 的配置，来激活清理日志备份数据的操作，具体操作激活优先级可参考 [tidb-operator#4682](https://github.com/pingcap/tidb-operator/pull/4682)。执行如下操作来清理 2022-10-10T15:21:00+08:00 之前的所有日志备份数据。
+1. 由于我们已经在开启日志备份的时候已经创建了名为 `demo1-log-backup-azblob` 的 `Backup` CR，因此可以直接更新该 `Backup` CR 的配置，来激活清理日志备份数据的操作。操作激活优先级从高到低分别是停止日志备份任务、删除日志备份数据和开启日志备份任务。执行如下操作来清理 2022-10-10T15:21:00+08:00 之前的所有日志备份数据。
 
     {{< copyable "shell-regular" >}}
 
@@ -310,7 +320,7 @@ kubectl get bk -n backup-test -o wide
     
     ```
 
-+ 等待清理操作完成：
+2. 等待清理操作完成：
 
     ```shell
     kubectl get jobs -n backup-test
@@ -322,7 +332,7 @@ kubectl get bk -n backup-test -o wide
     backup-demo1-log-backup-azblob-log-truncate   1/1           ...
     ``` 
 
-+ 查看 `Backup` CR 的信息：
+3. 查看 `Backup` CR 的信息：
 
     ```shell
     kubectl describe backup -n backup-test
@@ -474,19 +484,19 @@ spec:
 
 </details>
 
-## 定时全量备份
+## 定时快照备份
 
-你可以通过设置备份策略来对 TiDB 集群进行定时备份，同时设置备份的保留策略以避免产生过多的备份。定时全量备份通过自定义的 `BackupSchedule` CR 对象来描述。每到备份时间点会触发一次全量备份，定时全量备份底层通过 Ad-hoc 全量备份来实现。
+你可以通过设置备份策略来对 TiDB 集群进行定时备份，同时设置备份的保留策略以避免产生过多的备份。定时快照备份通过自定义的 `BackupSchedule` CR 对象来描述。每到备份时间点会触发一次快照备份，定时快照备份底层通过 Ad-hoc 快照备份来实现。
 
-### 前置条件：准备定时全量备份环境
+### 前置条件：准备定时快照备份环境
 
-同[准备 Ad-hoc 备份环境](#前置条件：准备-Ad-hoc-备份环境)。
+同[准备 Ad-hoc 备份环境](#前置条件准备-ad-hoc-备份环境)。
 
-### 全量备份：定时备份数据到 Azure Blob Storage
+### 快照备份：定时备份数据到 Azure Blob Storage
 
 依据准备 Ad-hoc 备份环境时所选择的远程存储访问授权方式，你需要使用下面对应的方法将数据定时备份到 Azure Blob Storage 上：
 
-+ 方法 1：如果通过了访问密钥的方式授权，你可以按照以下说明创建 `BackupSchedule` CR，开启 TiDB 集群定时全量备份：
++ 方法 1：如果通过了访问密钥的方式授权，你可以按照以下说明创建 `BackupSchedule` CR，开启 TiDB 集群定时快照备份：
 
     {{< copyable "shell-regular" >}}
 
@@ -532,7 +542,7 @@ spec:
           prefix: my-folder
     ```
 
-+ 方法 2：如果通过了 Azure AD 的方式授权，你可以按照以下说明创建 `BackupSchedule` CR，开启 TiDB 集群定时全量备份：
++ 方法 2：如果通过了 Azure AD 的方式授权，你可以按照以下说明创建 `BackupSchedule` CR，开启 TiDB 集群定时快照备份：
 
     {{< copyable "shell-regular" >}}
 
@@ -583,7 +593,7 @@ spec:
 - 关于 `backupSchedule` 独有的配置项具体介绍，请参考 [BackupSchedule CR 字段介绍](backup-restore-cr.md#backupschedule-cr-字段介绍)。
 - `backupTemplate` 用于指定集群及远程存储相关的配置，字段和 Backup CR 中的 `spec` 一样，详细介绍可参考 [Backup CR 字段介绍](backup-restore-cr.md#backup-cr-字段介绍)。
 
-定时全量备份创建完成后，可以通过以下命令查看定时全量备份的状态：
+定时快照备份创建完成后，可以通过以下命令查看定时快照备份的状态：
 
 {{< copyable "shell-regular" >}}
 
@@ -591,7 +601,7 @@ spec:
 kubectl get bks -n test1 -o wide
 ```
 
-查看定时全量备份下面所有的备份条目：
+查看定时快照备份下面所有的备份条目：
 
 {{< copyable "shell-regular" >}}
 
