@@ -40,12 +40,14 @@ if [ "$1" == "develop" ] || [ "$1" == "dev" ]; then
 fi
 
 if [ ! -e website-docs/.git ]; then
-  git clone https://github.com/pingcap/website-docs
+  git clone GitHub - pingcap/website-docs: The next generation of PingCAP Docs. Powered by Gatsby ⚛️.
 fi
 
 if [ ! -e website-docs/docs/markdown-pages ]; then
   ln -s ../../markdown-pages website-docs/docs/markdown-pages
 fi
+
+cp docs.json website-docs/docs/docs.json
 
 if [ "$CMD" == "start" ]; then
   (cd website-docs && yarn && yarn start)
