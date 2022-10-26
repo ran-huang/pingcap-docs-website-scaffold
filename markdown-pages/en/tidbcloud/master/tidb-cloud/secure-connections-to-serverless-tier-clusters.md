@@ -40,7 +40,7 @@ Generally, enabling TLS and offering a CA root path to authenticate the server i
 The following examples show the connection string in MySQL CLI client, MyCLI client, Java, Python, Go, and Node.js:
 
 <SimpleTab>
-<div label="MySQL CLI client">
+<div label="MySQL CLI">
 
 MySQL CLI client attempts to establish TLS connection by default. When you connect to TiDB Serverless Tier clusters, you should set `ssl-mode` and `ssl-ca`.
 
@@ -53,7 +53,7 @@ mysql --connect-timeout 15 -u <username> -h <host> -P 4000 --ssl-mode=VERIFY_IDE
 
 </div>
 
-<div label="MyCLI client">
+<div label="MyCLI">
 
 [MyCLI](https://www.mycli.net/) automatically enables TLS when using TLS related parameters. When you connect to TiDB Serverless Tier clusters, you need to set `ssl-ca` and `ssl-verify-server-cert`.
 
