@@ -17,27 +17,39 @@ The following list introduces the user scenarios, the supported upstreams and do
 
 ## [TiDB Data Migration (DM)](/dm/dm-overview.md)
 
-| User scenario | Upstream (or the imported source file) | Downstream (or the output file) | Advantages | Limitation |
-|:---|:---|:---|:---|:---|
-| Data migration from MySQL-compatible databases to TiDB |  MySQL, MariaDB, Aurora, MySQL| TiDB   | <ul><li>A convenient and unified data migration task management tool that supports full data migration and incremental replication</li><li>Support filtering tables and operations</li><li>Support shard merge and migration</li></ul>  | Data import speed is roughly the same as that of TiDB Lightning's TiDB-backend, and a lot lower than that of TiDB Lightning's Local-backend. So it is recommended to use DM to migrate full data with a size of less than 1 TiB. |
+| User scenario | Data migration from MySQL-compatible databases to TiDB |
+|---|---|
+| Upstream (or the imported source file) | MySQL, MariaDB, Aurora, MySQL |
+| Downstream (or the output file) | TiDB |
+| Advantages | A convenient and unified data migration task management tool that supports full data migration and incremental replication Support filtering tables and operations Support shard merge and migration |
+| Limitation | Data import speed is roughly the same as that of TiDB Lightning's TiDB-backend, and a lot lower than that of TiDB Lightning's Local-backend. So it is recommended to use DM to migrate full data with a size of less than 1 TiB. |
 
 ## [Dumpling](/dumpling-overview.md)
 
-| User scenario | Upstream (or the imported source file) | Downstream (or the output file) | Advantages | Limitation |
-|:---|:---|:---|:---|:---|
-| Full data export from MySQL or TiDB | MySQL, TiDB| SQL, CSV  | <ul><li>Support the table-filter feature that enables you to filter data easier</li><li>Support exporting data to Amazon S3</li></ul>|<ul><li>If you want to restore the exported data to a database other than TiDB, it is recommended to use Dumpling.</li><li>If you want to restore the exported data to another TiDB cluster, it is recommended to use Backup & Restore (BR).</li></ul> |
+| User scenario | Full data export from MySQL or TiDB |
+|---|---|
+| Upstream (or the imported source file) | MySQL, TiDB |
+| Downstream (or the output file) | SQL, CSV |
+| Advantages | Support the table-filter feature that enables you to filter data easier Support exporting data to Amazon S3 |
+| Limitation | If you want to restore the exported data to a database other than TiDB, it is recommended to use Dumpling. If you want to restore the exported data to another TiDB cluster, it is recommended to use Backup & Restore (BR). |
 
 ## [TiDB Lightning](/tidb-lightning/tidb-lightning-overview.md)
 
-| User scenario | Upstream (or the imported source file) | Downstream (or the output file) | Advantages | Limitation |
-|:---|:---|:---|:---|:---|
-| Full data import into TiDB | <ul><li>Files exported from Dumpling</li><li>Parquet files exported by Amazon Aurora or Apache Hive</li><li>CSV files</li><li>Data read from local disks or Amazon S3</li></ul> | TiDB | <ul><li>Support quickly importing a large amount of data and quickly initializing a specific table in a TiDB cluster </li><li>Support checkpoints to store the import progress, so that `tidb-lightning` continues importing from where it lefts off after restarting</li><li>Support data filtering</li></ul> | <ul><li>If Local-backend is used for data import, during the import process, the TiDB cluster cannot provide services.</li><li> If you do not want the TiDB services to be impacted, perform the data import according to TiDB Lightning TiDB-backend.</li></ul> |
+| User scenario | Full data import into TiDB |
+|---|---|
+| Upstream (or the imported source file) | Files exported from Dumpling Parquet files exported by Amazon Aurora or Apache Hive CSV files Data read from local disks or Amazon S3 |
+| Downstream (or the output file) | TiDB |
+| Advantages | Support quickly importing a large amount of data and quickly initializing a specific table in a TiDB cluster  Support checkpoints to store the import progress, so that `tidb-lightning` continues importing from where it lefts off after restarting Support data filtering |
+| Limitation | If Local-backend is used for data import, during the import process, the TiDB cluster cannot provide services.  If you do not want the TiDB services to be impacted, perform the data import according to TiDB Lightning TiDB-backend. |
 
 ## [Backup & Restore (BR)](/br/backup-and-restore-overview.md)
 
-| User scenario | Upstream (or the imported source file) | Downstream (or the output file) | Advantages | Limitation |
-|:---|:---|:---|:---|:---|
-| Migrate a large amount of TiDB custer data by backing up and restoring data. | TiDB| SST, backup.meta files, backup.lock files|<ul><li>Suitable for migrating data to another TiDB cluster</li><li>Support backing up data to an external storage for disaster recovery</li></ul> | <ul><li>When BR restores data to the upstream cluster of TiCDC or Drainer, the restored data cannot be replicated to the downstream by TiCDC or Drainer.</li><li>BR supports operations only between clusters that have the same `new_collations_enabled_on_first_bootstrap` value.</li></ul> |
+| User scenario | Migrate a large amount of TiDB custer data by backing up and restoring data. |
+|---|---|
+| Upstream (or the imported source file) | TiDB |
+| Downstream (or the output file) | SST, backup.meta files, backup.lock files |
+| Advantages | Suitable for migrating data to another TiDB cluster Support backing up data to an external storage for disaster recovery |
+| Limitation | When BR restores data to the upstream cluster of TiCDC or Drainer, the restored data cannot be replicated to the downstream by TiCDC or Drainer. BR supports operations only between clusters that have the same `new_collations_enabled_on_first_bootstrap` value. |
 
 ## [TiCDC](/ticdc/ticdc-overview.md)
 
