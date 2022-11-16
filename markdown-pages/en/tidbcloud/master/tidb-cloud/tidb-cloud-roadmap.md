@@ -108,6 +108,7 @@ For the roadmap of TiDB kernel, refer to [TiDB Roadmap](https://github.com/pingc
     <td rowspan="3">Cluster diagnosis data accessibility </td>
     <td>✅ Access diagnosis data online in real time.</td>
     <td>Integrate with various monitoring and diagnosis systems to improve the real-time data access capability.</td>
+  </tr>
   <tr>
     <td>✅ Access diagnosis data offline.</td>
     <td>Provide offline data access for large-scale diagnosis, analysis, and tuning.</td>
@@ -119,7 +120,10 @@ For the roadmap of TiDB kernel, refer to [TiDB Roadmap](https://github.com/pingc
   <tr>
     <td>TiDB Cloud service tracing</td>
     <td>Build the monitoring links for each component of TiDB Cloud service.</td>
-    <td><ul><li>Build the tracing links for each component of TiDB Cloud service in user scenarios.</li><li>Provide assessment on service availability from the perspective of users.</li></ul></td>
+    <td>
+      <ul><li>Build the tracing links for each component of TiDB Cloud service in user scenarios.</li>
+      <li>Provide assessment on service availability from the perspective of users.</li></ul>
+    </td>
   </tr>
 </tbody>
 </table>
