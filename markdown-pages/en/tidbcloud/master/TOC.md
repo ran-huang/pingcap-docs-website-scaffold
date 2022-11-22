@@ -15,16 +15,14 @@
 - Develop Applications
   - [Overview](/develop/dev-guide-overview.md)
   - Quick Start
-    - [Build a TiDB Developer Cluster](/develop/dev-guide-build-cluster-in-cloud.md)
+    - [Build a TiDB Cluster in TiDB Cloud (Serverless Tier)](/develop/dev-guide-build-cluster-in-cloud.md)
     - [CRUD SQL in TiDB](/develop/dev-guide-tidb-crud-sql.md)
-    - Build a Simple CRUD App with TiDB
-      - [Java](/develop/dev-guide-sample-application-java.md)
-      - [Golang](/develop/dev-guide-sample-application-golang.md)
   - Example Applications
-    - [Build a TiDB Application using Spring Boot](/develop/dev-guide-sample-application-spring-boot.md)
+    - [Java](/develop/dev-guide-sample-application-java.md)
+    - [Java (Spring Boot)](/develop/dev-guide-sample-application-spring-boot.md)
+    - [Golang](/develop/dev-guide-sample-application-golang.md)
   - Connect to TiDB
     - [Choose Driver or ORM](/develop/dev-guide-choose-driver-or-orm.md)
-    - [Connect to TiDB](/develop/dev-guide-connect-to-tidb.md)
     - [Connection Pools and Connection Parameters](/develop/dev-guide-connection-parameters.md)
   - Design Database Schema
     - [Overview](/develop/dev-guide-schema-design-overview.md)
@@ -72,6 +70,9 @@
       - [SQL Development Specifications](/develop/dev-guide-sql-development-specification.md)
   - Cloud Native Development Environment
     - [Gitpod](/develop/dev-guide-playground-gitpod.md)
+  - Third-Party Support
+    - [Third-Party Tools Supported by TiDB](/develop/dev-guide-third-party-support.md)
+    - [Known Incompatibility Issues with Third-Party Tools](/develop/dev-guide-third-party-tools-compatibility.md)
 - Manage Cluster
   - Plan Your Cluster
     - [Select Your Cluster Tier](/tidb-cloud/select-cluster-tier.md)
@@ -79,10 +80,11 @@
     - [TiDB Cloud Performance Reference](/tidb-cloud/tidb-cloud-performance-reference.md)
   - [Create a TiDB Cluster](/tidb-cloud/create-tidb-cluster.md)
   - Connect to Your TiDB Cluster
-    - [Connect via a SQL Client](/tidb-cloud/connect-to-tidb-cluster.md)
-    - [Connect via SQL Shell](/tidb-cloud/connect-to-tidb-cluster.md#connect-via-sql-shell)
-  - [Set Up Private Endpoint Connections](/tidb-cloud/set-up-private-endpoint-connections.md)
-  - [Set Up VPC Peering Connections](/tidb-cloud/set-up-vpc-peering-connections.md)
+    - [Choose a Connection Method](/tidb-cloud/connect-to-tidb-cluster.md)
+    - [Connect via Standard Connection](/tidb-cloud/connect-via-standard-connection.md)
+    - [Connect via Private Endpoint](/tidb-cloud/set-up-private-endpoint-connections.md)
+    - [Connect via VPC Peering](/tidb-cloud/set-up-vpc-peering-connections.md)
+    - [Connect via SQL Shell](/tidb-cloud/connect-via-sql-shell.md)
   - Use an HTAP Cluster with TiFlash
     - [TiFlash Overview](/tiflash/tiflash-overview.md)
     - [Create TiFlash Replicas](/tiflash/create-tiflash-replicas.md)
@@ -97,9 +99,12 @@
 - Migrate Data
   - [Import Sample Data](/tidb-cloud/import-sample-data.md)
   - Migrate Data into TiDB
+    - [Overview](/tidb-cloud/tidb-cloud-migration-overview.md)
     - [Configure Amazon S3 Access and GCS Access](/tidb-cloud/config-s3-and-gcs-access.md)
+    - [Naming Conventions for Data Import](/tidb-cloud/naming-conventions-for-data-import.md)
     - [Migrate from MySQL-Compatible Databases](/tidb-cloud/migrate-data-into-tidb.md)
     - [Migrate Incremental Data from MySQL-Compatible Databases](/tidb-cloud/migrate-incremental-data-from-mysql.md)
+    - [Migrate and Merge MySQL Shards of Large Datasets](/tidb-cloud/migrate-sql-shards.md)
     - [Migrate from Amazon Aurora MySQL in Bulk](/tidb-cloud/migrate-from-aurora-bulk-import.md)
     - [Import or Migrate from Amazon S3 or GCS to TiDB Cloud](/tidb-cloud/migrate-from-amazon-s3-or-gcs.md)
     - [Import CSV Files from Amazon S3 or GCS into TiDB Cloud](/tidb-cloud/import-csv-files.md)
@@ -114,15 +119,12 @@
   - [Overview](/tidb-cloud/monitor-tidb-cluster.md)
   - [Built-in Monitoring](/tidb-cloud/built-in-monitoring.md)
   - [Built-in Alerting](/tidb-cloud/monitor-built-in-alerting.md)
-  - Third-Party Monitoring Integrations
-    - [Datadog Integration](/tidb-cloud/monitor-datadog-integration.md)
-    - [Prometheus and Grafana Integration](/tidb-cloud/monitor-prometheus-and-grafana-integration.md)
+  - [Third-Party Monitoring Integrations](/tidb-cloud/third-party-monitoring-integrations.md)
 - Tune Performance
   - [Overview](/tidb-cloud/tidb-cloud-tune-performance-overview.md)
   - Analyze Performance
-    - [Statement Analysis](/tidb-cloud/tune-performance.md)
-    - [Key Visualizer](/tidb-cloud/tune-performance.md#key-visualizer)
-    - [Statement Summary Tables](/statement-summary-tables.md)
+    - [Use the Diagnosis Tab](/tidb-cloud/tune-performance.md)
+    - [Use Statement Summary Tables](/statement-summary-tables.md)
   - SQL Tuning
     - [Overview](/tidb-cloud/tidb-cloud-sql-tuning-overview.md)
     - Understanding the Query Execution Plan
@@ -153,6 +155,7 @@
         - [Statistics](/statistics.md)
         - [Wrong Index Solution](/wrong-index-solution.md)
         - [Distinct Optimization](/agg-distinct-optimization.md)
+        - [Cost Model](/cost-model.md)
       - [Prepare Execution Plan Cache](/sql-prepared-plan-cache.md)
     - Control Execution Plans
       - [Overview](/control-execution-plan.md)
@@ -165,9 +168,11 @@
      - [Overview](/garbage-collection-overview.md)
      - [Configuration](/garbage-collection-configuration.md)
   - [Tune TiFlash performance](/tiflash/tune-tiflash-performance.md)
-- Manage User Access
+- Security
   - [Manage Console User Access](/tidb-cloud/manage-user-access.md)
   - [Configure Cluster Security Settings](/tidb-cloud/configure-security-settings.md)
+  - [Database Audit Logging](/tidb-cloud/tidb-cloud-auditing.md)
+  - [Secure Connections to Serverless Tier Clusters](/tidb-cloud/secure-connections-to-serverless-tier-clusters.md)
 - Billing
   - [Invoices](/tidb-cloud/tidb-cloud-billing.md#invoices)
   - [Billing Details](/tidb-cloud/tidb-cloud-billing.md#billing-details)
@@ -176,6 +181,18 @@
 - API
   - [API Overview](/tidb-cloud/api-overview.md)
   - [API Reference](https://docs.pingcap.com/tidbcloud/api/v1beta)
+- Integrations
+  - [Airbyte](/tidb-cloud/integrate-tidbcloud-with-airbyte.md)
+  - [Datadog](/tidb-cloud/monitor-datadog-integration.md)
+  - [dbt](/tidb-cloud/integrate-tidbcloud-with-dbt.md)
+  - [Prometheus and Grafana](/tidb-cloud/monitor-prometheus-and-grafana-integration.md)
+  - Terraform
+    - [Terraform Integration Overview](/tidb-cloud/terraform-tidbcloud-provider-overview.md)
+    - [Get TiDB Cloud Terraform Provider](/tidb-cloud/terraform-get-tidbcloud-provider.md)
+    - [Use Cluster Resource](/tidb-cloud/terraform-use-cluster-resource.md)
+    - [Use Backup Resource](/tidb-cloud/terraform-use-backup-resource.md)
+    - [Use Restore Resource](/tidb-cloud/terraform-use-restore-resource.md)
+  - [Vercel](/tidb-cloud/integrate-tidbcloud-with-vercel.md)
 - Reference
   - TiDB Cluster Architecture
     - [Overview](/tidb-architecture.md)
@@ -413,7 +430,6 @@
   - [Dumpling](/dumpling-overview.md)
   - [Table Filter](/table-filter.md)
   - [Troubleshoot Inconsistency Between Data and Indexes](/troubleshoot-data-inconsistency-errors.md)
-  - [Secure Connections to Serverless Tier Clusters](/tidb-cloud/secure-connections-to-serverless-tier-clusters.md)
 - [FAQs](/tidb-cloud/tidb-cloud-faq.md)
 - Release Notes
   - [2022](/tidb-cloud/release-notes-2022.md)
