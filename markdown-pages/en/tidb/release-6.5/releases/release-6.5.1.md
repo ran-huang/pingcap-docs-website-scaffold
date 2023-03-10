@@ -34,7 +34,7 @@ Quick access: [Quick start](https://docs.pingcap.com/tidb/v6.5/quick-start-with-
         - Full support for IPv6 addressing: TiDB supports using IPv6 addresses for all network connections, including client connections, internal communication between nodes, and communication with external systems.
         - Dual-stack support: If you are not ready to fully switch to IPv6 yet, TiDB also supports dual-stack networks. This means that you can use both IPv4 and IPv6 addresses in the same TiDB cluster and choose a network deployment mode that prioritizes IPv6 by configuration.
 
-      For more information on IPv6 deployment, see [TiDB on Kubernetes documentation]().
+      For more information on IPv6 deployment, see [TiDB on Kubernetes documentation](https://docs.pingcap.com/tidb-in-kubernetes/stable/configure-a-tidb-cluster#ipv6-support).
 
     - Support specifying the SQL script executed upon TiDB cluster initialization [#35624](https://github.com/pingcap/tidb/issues/35624) @[morgo](https://github.com/morgo)
 
@@ -112,7 +112,7 @@ Quick access: [Quick start](https://docs.pingcap.com/tidb/v6.5/quick-start-with-
     - Fix the issue that creating Global Binding on partitioned tables might cause TiDB to fail to start [#40368](https://github.com/pingcap/tidb/issues/40368) @[Yisaer](https://github.com/Yisaer)
     - Fix the issue that query plan operators might be missing in slow logs [#41458](https://github.com/pingcap/tidb/issues/41458) @[time-and-fate](https://github.com/time-and-fate)
     - Fix the issue that incorrect results might be returned when TopN operators with virtual columns are mistakenly pushing down to TiKV or TiFlash [#41355](https://github.com/pingcap/tidb/issues/41355) @[Dousir9](https://github.com/Dousir9)
-    - Fix the issue of inconsistent data when adding indexes [#40698](https://github.com/pingcap/tidb/issues/40698）[#40730](https://github.com/pingcap/tidb/issues/40730）[#41459](https://github.com/pingcap/tidb/issues/41459）[#40464](https://github.com/pingcap/tidb/issues/40464）[#40217](https://github.com/pingcap/tidb/issues/40217）@[tangenta](https://github.com/tangenta)
+    - Fix the issue of inconsistent data when adding indexes [#40698](https://github.com/pingcap/tidb/issues/40698) [#40730](https://github.com/pingcap/tidb/issues/40730) [#41459](https://github.com/pingcap/tidb/issues/41459) [#40464](https://github.com/pingcap/tidb/issues/40464) [#40217](https://github.com/pingcap/tidb/issues/40217) @[tangenta](https://github.com/tangenta)
     - Fix the issue of getting the `Pessimistic lock not found` error when adding indexes [#41515](https://github.com/pingcap/tidb/issues/41515) @[tangenta](https://github.com/tangenta)
     - Fix the issue of misreported duplicate key errors when adding unique indexes [#41630](https://github.com/pingcap/tidb/issues/41630) @[tangenta](https://github.com/tangenta)
     - Fix the issue of performance degradation when using `paging` in TiDB [#40741](https://github.com/pingcap/tidb/issues/40741) @[solotzg](https://github.com/solotzg)
