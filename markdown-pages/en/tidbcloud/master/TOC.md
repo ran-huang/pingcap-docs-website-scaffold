@@ -11,20 +11,19 @@
 - Get Started
   - [Try Out TiDB Cloud](/tidb-cloud/tidb-cloud-quickstart.md)
   - [Try Out HTAP](/tidb-cloud/tidb-cloud-htap-quickstart.md)
+  - [Try Out TiDB Cloud CLI](/tidb-cloud/get-started-with-cli.md)
   - [Perform a PoC](/tidb-cloud/tidb-cloud-poc.md)
 - Develop Applications
   - [Overview](/develop/dev-guide-overview.md)
   - Quick Start
-    - [Build a TiDB Developer Cluster](/develop/dev-guide-build-cluster-in-cloud.md)
+    - [Build a TiDB Cluster in TiDB Cloud (Serverless Tier)](/develop/dev-guide-build-cluster-in-cloud.md)
     - [CRUD SQL in TiDB](/develop/dev-guide-tidb-crud-sql.md)
-    - Build a Simple CRUD App with TiDB
-      - [Java](/develop/dev-guide-sample-application-java.md)
-      - [Golang](/develop/dev-guide-sample-application-golang.md)
   - Example Applications
-    - [Build a TiDB Application using Spring Boot](/develop/dev-guide-sample-application-spring-boot.md)
+    - [Java](/develop/dev-guide-sample-application-java.md)
+    - [Java (Spring Boot)](/develop/dev-guide-sample-application-spring-boot.md)
+    - [Golang](/develop/dev-guide-sample-application-golang.md)
   - Connect to TiDB
     - [Choose Driver or ORM](/develop/dev-guide-choose-driver-or-orm.md)
-    - [Connect to TiDB](/develop/dev-guide-connect-to-tidb.md)
     - [Connection Pools and Connection Parameters](/develop/dev-guide-connection-parameters.md)
   - Design Database Schema
     - [Overview](/develop/dev-guide-schema-design-overview.md)
@@ -35,10 +34,11 @@
     - [Insert Data](/develop/dev-guide-insert-data.md)
     - [Update Data](/develop/dev-guide-update-data.md)
     - [Delete Data](/develop/dev-guide-delete-data.md)
+    - [Periodically Delete Expired Data Using TTL (Time to Live)](/time-to-live.md)
     - [Prepared Statements](/develop/dev-guide-prepared-statement.md)
   - Read Data
     - [Query Data from a Single Table](/develop/dev-guide-get-data-from-single-table.md)
-    - [Multi-table Join Queries](/develop/dev-guide-join-tables.md)
+    - [Multi-Table Join Queries](/develop/dev-guide-join-tables.md)
     - [Subquery](/develop/dev-guide-use-subqueries.md)
     - [Paginate Results](/develop/dev-guide-paginate-results.md)
     - [Views](/develop/dev-guide-use-views.md)
@@ -48,6 +48,7 @@
       - [Follower Read](/develop/dev-guide-use-follower-read.md)
       - [Stale Read](/develop/dev-guide-use-stale-read.md)
     - [HTAP Queries](/develop/dev-guide-hybrid-oltp-and-olap-queries.md)
+    - [FastScan](/develop/dev-guide-use-fastscan.md)
   - Transaction
     - [Overview](/develop/dev-guide-transaction-overview.md)
     - [Optimistic and Pessimistic Transactions](/develop/dev-guide-optimistic-and-pessimistic-transaction.md)
@@ -72,6 +73,9 @@
       - [SQL Development Specifications](/develop/dev-guide-sql-development-specification.md)
   - Cloud Native Development Environment
     - [Gitpod](/develop/dev-guide-playground-gitpod.md)
+  - Third-Party Support
+    - [Third-Party Tools Supported by TiDB](/develop/dev-guide-third-party-support.md)
+    - [Known Incompatibility Issues with Third-Party Tools](/develop/dev-guide-third-party-tools-compatibility.md)
 - Manage Cluster
   - Plan Your Cluster
     - [Select Your Cluster Tier](/tidb-cloud/select-cluster-tier.md)
@@ -79,33 +83,51 @@
     - [TiDB Cloud Performance Reference](/tidb-cloud/tidb-cloud-performance-reference.md)
   - [Create a TiDB Cluster](/tidb-cloud/create-tidb-cluster.md)
   - Connect to Your TiDB Cluster
-    - [Connect via a SQL Client](/tidb-cloud/connect-to-tidb-cluster.md)
-    - [Connect via SQL Shell](/tidb-cloud/connect-to-tidb-cluster.md#connect-via-sql-shell)
-  - [Set Up Private Endpoint Connections](/tidb-cloud/set-up-private-endpoint-connections.md)
-  - [Set Up VPC Peering Connections](/tidb-cloud/set-up-vpc-peering-connections.md)
+    - [Connection Method Overview](/tidb-cloud/connect-to-tidb-cluster.md)
+    - [Connect via Standard Connection](/tidb-cloud/connect-via-standard-connection.md)
+    - [Connect via Private Endpoint](/tidb-cloud/set-up-private-endpoint-connections.md)
+    - [Connect via VPC Peering](/tidb-cloud/set-up-vpc-peering-connections.md)
+    - [Connect via SQL Shell](/tidb-cloud/connect-via-sql-shell.md)
   - Use an HTAP Cluster with TiFlash
     - [TiFlash Overview](/tiflash/tiflash-overview.md)
     - [Create TiFlash Replicas](/tiflash/create-tiflash-replicas.md)
     - [Read Data from TiFlash](/tiflash/use-tidb-to-read-tiflash.md)
     - [Use MPP Mode](/tiflash/use-tiflash-mpp-mode.md)
     - [Supported Push-down Calculations](/tiflash/tiflash-supported-pushdown-calculations.md)
+    - [TiFlash Query Result Materialization](/tiflash/tiflash-results-materialization.md)
     - [Compatibility](/tiflash/tiflash-compatibility.md)
   - [Scale a TiDB Cluster](/tidb-cloud/scale-tidb-cluster.md)
   - [Pause or Resume a TiDB Cluster](/tidb-cloud/pause-or-resume-tidb-cluster.md)
   - [Upgrade a TiDB Cluster](/tidb-cloud/upgrade-tidb-cluster.md)
   - [Delete a TiDB Cluster](/tidb-cloud/delete-tidb-cluster.md)
-- Migrate Data
-  - [Import Sample Data](/tidb-cloud/import-sample-data.md)
-  - Migrate Data into TiDB
-    - [Configure Amazon S3 Access and GCS Access](/tidb-cloud/config-s3-and-gcs-access.md)
-    - [Migrate from MySQL-Compatible Databases](/tidb-cloud/migrate-data-into-tidb.md)
-    - [Migrate Incremental Data from MySQL-Compatible Databases](/tidb-cloud/migrate-incremental-data-from-mysql.md)
-    - [Migrate from Amazon Aurora MySQL in Bulk](/tidb-cloud/migrate-from-aurora-bulk-import.md)
-    - [Import or Migrate from Amazon S3 or GCS to TiDB Cloud](/tidb-cloud/migrate-from-amazon-s3-or-gcs.md)
-    - [Import CSV Files from Amazon S3 or GCS into TiDB Cloud](/tidb-cloud/import-csv-files.md)
-    - [Import Apache Parquet Files from Amazon S3 or GCS into TiDB Cloud](/tidb-cloud/import-parquet-files.md)
-    - [Troubleshoot Access Denied Errors during Data Import from Amazon S3](/tidb-cloud/troubleshoot-import-access-denied-error.md)
+- Migrate or Import Data
+  - [Overview](/tidb-cloud/tidb-cloud-migration-overview.md)
+  - Migrate Data into TiDB Cloud
+      - [Migrate from MySQL-Compatible Databases Using Data Migration](/tidb-cloud/migrate-from-mysql-using-data-migration.md)
+      - [Migrate and Merge MySQL Shards of Large Datasets](/tidb-cloud/migrate-sql-shards.md)
+      - [Migrate from On-Premises TiDB to TiDB Cloud](/tidb-cloud/migrate-from-op-tidb.md)
+      - [Migrate from MySQL-Compatible Databases Using AWS DMS](/tidb-cloud/migrate-from-mysql-using-aws-dms.md)
+      - [Migrate from Amazon RDS for Oracle Using AWS DMS](/tidb-cloud/migrate-from-oracle-using-aws-dms.md)
+  - Import Data into TiDB Cloud
+      - [Import Local Files](/tidb-cloud/tidb-cloud-import-local-files.md)
+      - [Import Sample Data (SQL File)](/tidb-cloud/import-sample-data.md)
+      - [Import CSV Files from Amazon S3 or GCS](/tidb-cloud/import-csv-files.md)
+      - [Import Apache Parquet Files from Amazon S3 or GCS](/tidb-cloud/import-parquet-files.md)
   - [Export Data from TiDB](/tidb-cloud/export-data-from-tidb-cloud.md)
+  - Reference
+      - [Configure Amazon S3 Access and GCS Access](/tidb-cloud/config-s3-and-gcs-access.md)
+      - [Naming Conventions for Data Import](/tidb-cloud/naming-conventions-for-data-import.md)
+      - [CSV Configurations for Importing Data](/tidb-cloud/csv-config-for-import-data.md)
+      - [Troubleshoot Access Denied Errors during Data Import from Amazon S3](/tidb-cloud/troubleshoot-import-access-denied-error.md)
+      - [Precheck Errors, Migration Errors, and Alerts for Data Migration](/tidb-cloud/tidb-cloud-dm-precheck-and-troubleshooting.md)
+- Explore Data
+  - [Chat2Query (Beta)](/tidb-cloud/explore-data-with-chat2query.md)
+  - Data Service
+    - [Error Code](/tidb-cloud/data-service-response-and-error-code.md)
+- Stream Data
+  - [Changefeed Overview](/tidb-cloud/changefeed-overview.md)
+  - [To MySQL Sink](/tidb-cloud/changefeed-sink-to-mysql.md)
+  - [To Kafka Sink](/tidb-cloud/changefeed-sink-to-apache-kafka.md)
 - Back Up and Restore
   - [Automatic Backup](/tidb-cloud/backup-and-restore.md)
   - [Manual Backup](/tidb-cloud/backup-and-restore.md#manual-backup)
@@ -114,15 +136,12 @@
   - [Overview](/tidb-cloud/monitor-tidb-cluster.md)
   - [Built-in Monitoring](/tidb-cloud/built-in-monitoring.md)
   - [Built-in Alerting](/tidb-cloud/monitor-built-in-alerting.md)
-  - Third-Party Monitoring Integrations
-    - [Datadog Integration](/tidb-cloud/monitor-datadog-integration.md)
-    - [Prometheus and Grafana Integration](/tidb-cloud/monitor-prometheus-and-grafana-integration.md)
+  - [Third-Party Monitoring Integrations](/tidb-cloud/third-party-monitoring-integrations.md)
 - Tune Performance
   - [Overview](/tidb-cloud/tidb-cloud-tune-performance-overview.md)
   - Analyze Performance
-    - [Statement Analysis](/tidb-cloud/tune-performance.md)
-    - [Key Visualizer](/tidb-cloud/tune-performance.md#key-visualizer)
-    - [Statement Summary Tables](/statement-summary-tables.md)
+    - [Use the Diagnosis Tab](/tidb-cloud/tune-performance.md)
+    - [Use Statement Summary Tables](/statement-summary-tables.md)
   - SQL Tuning
     - [Overview](/tidb-cloud/tidb-cloud-sql-tuning-overview.md)
     - Understanding the Query Execution Plan
@@ -135,6 +154,7 @@
       - [Aggregation](/explain-aggregation.md)
       - [Views](/explain-views.md)
       - [Partitions](/explain-partitions.md)
+      - [Index Merge](/explain-index-merge.md)
     - SQL Optimization Process
       - [Overview](/sql-optimization-concepts.md)
       - Logic Optimization
@@ -151,8 +171,10 @@
         - [Overview](/sql-physical-optimization.md)
         - [Index Selection](/choose-index.md)
         - [Statistics](/statistics.md)
+        - [Extended Statistics](/extended-statistics.md)
         - [Wrong Index Solution](/wrong-index-solution.md)
         - [Distinct Optimization](/agg-distinct-optimization.md)
+        - [Cost Model](/cost-model.md)
       - [Prepare Execution Plan Cache](/sql-prepared-plan-cache.md)
     - Control Execution Plans
       - [Overview](/control-execution-plan.md)
@@ -164,18 +186,53 @@
   - Garbage Collection (GC)
      - [Overview](/garbage-collection-overview.md)
      - [Configuration](/garbage-collection-configuration.md)
-  - [Tune TiFlash performance](/tiflash/tune-tiflash-performance.md)
-- Manage User Access
-  - [Manage Console User Access](/tidb-cloud/manage-user-access.md)
-  - [Configure Cluster Security Settings](/tidb-cloud/configure-security-settings.md)
+  - [Tune TiFlash Performance](/tiflash/tune-tiflash-performance.md)
+- Security
+  - Identity Access Control
+    - [Password Authentication](/tidb-cloud/tidb-cloud-password-authentication.md)
+    - [SSO Authentication](/tidb-cloud/tidb-cloud-sso-authentication.md)
+    - [Identity Access Management](/tidb-cloud/manage-user-access.md)
+  - Network Access Control
+    - [Configure an IP Access List](/tidb-cloud/configure-ip-access-list.md)
+    - [Connect via Private Endpoint](/tidb-cloud/set-up-private-endpoint-connections.md)
+    - [Connect via VPC Peering](/tidb-cloud/set-up-vpc-peering-connections.md)
+    - [TLS Connections to Serverless Tier](/tidb-cloud/secure-connections-to-serverless-tier-clusters.md)
+    - [TLS Connections to Dedicated Tier](/tidb-cloud/tidb-cloud-tls-connect-to-dedicated-tier.md)
+  - Database Access Control
+    - [Configure Cluster Security Settings](/tidb-cloud/configure-security-settings.md)
+  - Audit Management
+    - [Database Audit Logging](/tidb-cloud/tidb-cloud-auditing.md)
+    - [Console Audit Logging](/tidb-cloud/tidb-cloud-console-auditing.md)
 - Billing
   - [Invoices](/tidb-cloud/tidb-cloud-billing.md#invoices)
   - [Billing Details](/tidb-cloud/tidb-cloud-billing.md#billing-details)
   - [Credits](/tidb-cloud/tidb-cloud-billing.md#credits)
   - [Payment Method Setting](/tidb-cloud/tidb-cloud-billing.md#payment-method)
+  - [Billing from AWS or GCP Marketplace](/tidb-cloud/tidb-cloud-billing.md#billing-from-aws-marketplace-or-google-cloud-marketplace)
+  - [Billing for Changefeeed](/tidb-cloud/tidb-cloud-billing-ticdc-rcu.md)
+  - [Billing for Data Migration](/tidb-cloud/tidb-cloud-billing-dm.md)
 - API
   - [API Overview](/tidb-cloud/api-overview.md)
   - [API Reference](https://docs.pingcap.com/tidbcloud/api/v1beta)
+- Integrations
+  - [Airbyte](/tidb-cloud/integrate-tidbcloud-with-airbyte.md)
+  - [Amazon AppFlow](/develop/dev-guide-aws-appflow-integration.md)
+  - [Cloudflare](/tidb-cloud/integrate-tidbcloud-with-cloudflare.md)
+  - [Datadog](/tidb-cloud/monitor-datadog-integration.md)
+  - [dbt](/tidb-cloud/integrate-tidbcloud-with-dbt.md)
+  - [n8n](/tidb-cloud/integrate-tidbcloud-with-n8n.md)
+  - [Netlify](/tidb-cloud/integrate-tidbcloud-with-netlify.md)
+  - [Prometheus and Grafana](/tidb-cloud/monitor-prometheus-and-grafana-integration.md)
+  - [ProxySQL](/develop/dev-guide-proxysql-integration.md)
+  - Terraform
+    - [Terraform Integration Overview](/tidb-cloud/terraform-tidbcloud-provider-overview.md)
+    - [Get TiDB Cloud Terraform Provider](/tidb-cloud/terraform-get-tidbcloud-provider.md)
+    - [Use Cluster Resource](/tidb-cloud/terraform-use-cluster-resource.md)
+    - [Use Backup Resource](/tidb-cloud/terraform-use-backup-resource.md)
+    - [Use Restore Resource](/tidb-cloud/terraform-use-restore-resource.md)
+    - [Use Import Resource](/tidb-cloud/terraform-use-import-resource.md)
+  - [Vercel](/tidb-cloud/integrate-tidbcloud-with-vercel.md)
+  - [Zapier](/tidb-cloud/integrate-tidbcloud-with-zapier.md)
 - Reference
   - TiDB Cluster Architecture
     - [Overview](/tidb-architecture.md)
@@ -204,7 +261,7 @@
       - [`ADMIN CANCEL DDL`](/sql-statements/sql-statement-admin-cancel-ddl.md)
       - [`ADMIN CHECKSUM TABLE`](/sql-statements/sql-statement-admin-checksum-table.md)
       - [`ADMIN CHECK [TABLE|INDEX]`](/sql-statements/sql-statement-admin-check-table-index.md)
-      - [`ADMIN SHOW DDL [JOBS|QUERIES]`](/sql-statements/sql-statement-admin-show-ddl.md)
+      - [`ADMIN SHOW DDL [JOBS|JOB QUERIES]`](/sql-statements/sql-statement-admin-show-ddl.md)
       - [`ALTER DATABASE`](/sql-statements/sql-statement-alter-database.md)
       - [`ALTER INDEX`](/sql-statements/sql-statement-alter-index.md)
       - [`ALTER TABLE`](/sql-statements/sql-statement-alter-table.md)
@@ -244,6 +301,8 @@
       - [`EXECUTE`](/sql-statements/sql-statement-execute.md)
       - [`EXPLAIN ANALYZE`](/sql-statements/sql-statement-explain-analyze.md)
       - [`EXPLAIN`](/sql-statements/sql-statement-explain.md)
+      - [`FLASHBACK CLUSTER TO TIMESTAMP`](/sql-statements/sql-statement-flashback-to-timestamp.md)
+      - [`FLASHBACK DATABASE`](/sql-statements/sql-statement-flashback-database.md)
       - [`FLASHBACK TABLE`](/sql-statements/sql-statement-flashback-table.md)
       - [`FLUSH PRIVILEGES`](/sql-statements/sql-statement-flush-privileges.md)
       - [`FLUSH STATUS`](/sql-statements/sql-statement-flush-status.md)
@@ -252,15 +311,18 @@
       - [`GRANT <role>`](/sql-statements/sql-statement-grant-role.md)
       - [`INSERT`](/sql-statements/sql-statement-insert.md)
       - [`KILL [TIDB]`](/sql-statements/sql-statement-kill.md)
+      - [`LOCK STATS`](/sql-statements/sql-statement-lock-stats.md)
       - [`MODIFY COLUMN`](/sql-statements/sql-statement-modify-column.md)
       - [`PREPARE`](/sql-statements/sql-statement-prepare.md)
       - [`RECOVER TABLE`](/sql-statements/sql-statement-recover-table.md)
       - [`RENAME INDEX`](/sql-statements/sql-statement-rename-index.md)
       - [`RENAME TABLE`](/sql-statements/sql-statement-rename-table.md)
+      - [`RENAME USER`](/sql-statements/sql-statement-rename-user.md)
       - [`REPLACE`](/sql-statements/sql-statement-replace.md)
       - [`REVOKE <privileges>`](/sql-statements/sql-statement-revoke-privileges.md)
       - [`REVOKE <role>`](/sql-statements/sql-statement-revoke-role.md)
       - [`ROLLBACK`](/sql-statements/sql-statement-rollback.md)
+      - [`SAVEPOINT`](/sql-statements/sql-statement-savepoint.md)
       - [`SELECT`](/sql-statements/sql-statement-select.md)
       - [`SET DEFAULT ROLE`](/sql-statements/sql-statement-set-default-role.md)
       - [`SET [NAMES|CHARACTER SET]`](/sql-statements/sql-statement-set-names.md)
@@ -274,6 +336,7 @@
       - [`SHOW CHARACTER SET`](/sql-statements/sql-statement-show-character-set.md)
       - [`SHOW COLLATION`](/sql-statements/sql-statement-show-collation.md)
       - [`SHOW [FULL] COLUMNS FROM`](/sql-statements/sql-statement-show-columns-from.md)
+      - [`SHOW CREATE DATABASE`](/sql-statements/sql-statement-show-create-database.md)
       - [`SHOW CREATE SEQUENCE`](/sql-statements/sql-statement-show-create-sequence.md)
       - [`SHOW CREATE TABLE`](/sql-statements/sql-statement-show-create-table.md)
       - [`SHOW CREATE USER`](/sql-statements/sql-statement-show-create-user.md)
@@ -295,6 +358,7 @@
       - [`SHOW SCHEMAS`](/sql-statements/sql-statement-show-schemas.md)
       - [`SHOW STATS_HEALTHY`](/sql-statements/sql-statement-show-stats-healthy.md)
       - [`SHOW STATS_HISTOGRAMS`](/sql-statements/sql-statement-show-histograms.md)
+      - [`SHOW STATS_LOCKED`](/sql-statements/sql-statement-show-stats-locked.md)
       - [`SHOW STATS_META`](/sql-statements/sql-statement-show-stats-meta.md)
       - [`SHOW STATUS`](/sql-statements/sql-statement-show-status.md)
       - [`SHOW TABLE NEXT_ROW_ID`](/sql-statements/sql-statement-show-table-next-rowid.md)
@@ -309,6 +373,7 @@
       - [`TABLE`](/sql-statements/sql-statement-table.md)
       - [`TRACE`](/sql-statements/sql-statement-trace.md)
       - [`TRUNCATE`](/sql-statements/sql-statement-truncate.md)
+      - [`UNLOCK STATS`](/sql-statements/sql-statement-unlock-stats.md)
       - [`UPDATE`](/sql-statements/sql-statement-update.md)
       - [`USE`](/sql-statements/sql-statement-use.md)
       - [`WITH`](/sql-statements/sql-statement-with.md)
@@ -363,6 +428,7 @@
         - [Usage Scenarios of Stale Read](/stale-read.md)
         - [Perform Stale Read Using `As OF TIMESTAMP`](/as-of-timestamp.md)
         - [Perform Stale Read Using `tidb_read_staleness`](/tidb-read-staleness.md)
+        - [Perform Stale Read Using `tidb_external_ts`](/tidb-external-ts.md)
       - [Use the `tidb_snapshot` System Variable](/read-historical-data.md)
     - System Tables
       - [`mysql`](/mysql-schema.md)
@@ -382,6 +448,8 @@
         - [`DEADLOCKS`](/information-schema/information-schema-deadlocks.md)
         - [`ENGINES`](/information-schema/information-schema-engines.md)
         - [`KEY_COLUMN_USAGE`](/information-schema/information-schema-key-column-usage.md)
+        - [`MEMORY_USAGE`](/information-schema/information-schema-memory-usage.md)
+        - [`MEMORY_USAGE_OPS_HISTORY`](/information-schema/information-schema-memory-usage-ops-history.md)
         - [`PARTITIONS`](/information-schema/information-schema-partitions.md)
         - [`PROCESSLIST`](/information-schema/information-schema-processlist.md)
         - [`REFERENTIAL_CONSTRAINTS`](/information-schema/information-schema-referential-constraints.md)
@@ -401,21 +469,55 @@
         - [`TIKV_REGION_PEERS`](/information-schema/information-schema-tikv-region-peers.md)
         - [`TIKV_REGION_STATUS`](/information-schema/information-schema-tikv-region-status.md)
         - [`TIKV_STORE_STATUS`](/information-schema/information-schema-tikv-store-status.md)
+        - [`USER_ATTRIBUTES`](/information-schema/information-schema-user-attributes.md)
         - [`USER_PRIVILEGES`](/information-schema/information-schema-user-privileges.md)
+        - [`VARIABLES_INFO`](/information-schema/information-schema-variables-info.md)
         - [`VIEWS`](/information-schema/information-schema-views.md)
+    - [Metadata Lock](/metadata-lock.md)
+    - [Use UUIDs](/best-practices/uuid.md)
   - [System Variables](/system-variables.md)
   - Storage Engines
     - TiKV
         - [TiKV Overview](/tikv-overview.md)
         - [RocksDB Overview](/storage-engine/rocksdb-overview.md)
     - TiFlash
-        - [TiFlash Overview](/tiflash/tiflash-overview.md)
+      - [TiFlash Overview](/tiflash/tiflash-overview.md)
+  - CLI
+    - [Overview](/tidb-cloud/cli-reference.md)
+    - cluster
+      - [create](/tidb-cloud/ticloud-cluster-create.md)
+      - [delete](/tidb-cloud/ticloud-cluster-delete.md)
+      - [describe](/tidb-cloud/ticloud-cluster-describe.md)
+      - [list](/tidb-cloud/ticloud-cluster-list.md)
+      - [connect-info](/tidb-cloud/ticloud-cluster-connect-info.md)
+    - config
+      - [create](/tidb-cloud/ticloud-config-create.md)
+      - [delete](/tidb-cloud/ticloud-config-delete.md)
+      - [describe](/tidb-cloud/ticloud-config-describe.md)
+      - [edit](/tidb-cloud/ticloud-config-edit.md)
+      - [list](/tidb-cloud/ticloud-config-list.md)
+      - [set](/tidb-cloud/ticloud-config-set.md)
+      - [use](/tidb-cloud/ticloud-config-use.md)
+    - [connect](/tidb-cloud/ticloud-connect.md)
+    - import
+      - [cancel](/tidb-cloud/ticloud-import-cancel.md)
+      - [describe](/tidb-cloud/ticloud-import-describe.md)
+      - [list](/tidb-cloud/ticloud-import-list.md)
+      - start
+        - [local](/tidb-cloud/ticloud-import-start-local.md)
+        - [s3](/tidb-cloud/ticloud-import-start-s3.md)
+    - project
+      - [list](/tidb-cloud/ticloud-project-list.md)
+    - [update](/tidb-cloud/ticloud-update.md)
   - [Dumpling](/dumpling-overview.md)
   - [Table Filter](/table-filter.md)
   - [Troubleshoot Inconsistency Between Data and Indexes](/troubleshoot-data-inconsistency-errors.md)
-  - [Secure Connections to Serverless Tier Clusters](/tidb-cloud/secure-connections-to-serverless-tier-clusters.md)
-- [FAQs](/tidb-cloud/tidb-cloud-faq.md)
+  - [Serverless Tier Limitations](/tidb-cloud/serverless-tier-limitations.md)
+- FAQs
+  - [TiDB Cloud FAQs](/tidb-cloud/tidb-cloud-faq.md)
+  - [Serverless Tier FAQs](/tidb-cloud/serverless-tier-faqs.md)
 - Release Notes
+  - [2023](/tidb-cloud/tidb-cloud-release-notes.md)
   - [2022](/tidb-cloud/release-notes-2022.md)
   - [2021](/tidb-cloud/release-notes-2021.md)
   - [2020](/tidb-cloud/release-notes-2020.md)
