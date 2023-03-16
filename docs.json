@@ -1,12 +1,15 @@
 {
   "docs": {
     "tidb": {
-      "stable": "release-6.1",
+      "stable": "release-6.5",
       "languages": {
         "en": {
           "repo": "pingcap/docs",
           "versions": [
             "master",
+            "release-6.6",
+            "release-6.5",
+            "release-6.4",
             "release-6.3",
             "release-6.2",
             "release-6.1",
@@ -26,6 +29,9 @@
           "repo": "pingcap/docs-cn",
           "versions": [
             "master",
+            "release-6.6",
+            "release-6.5",
+            "release-6.4",
             "release-6.3",
             "release-6.2",
             "release-6.1",
