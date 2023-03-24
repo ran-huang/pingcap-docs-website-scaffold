@@ -23,7 +23,7 @@ TiDB 版本：7.0.0 -[DMR](/releases/versioning.md#开发里程碑版本)
 </thead>
 <tbody>
   <tr>
-    <td rowspan="2">Scalability and Performance<br></td>
+    <td rowspan="2">Scalability and Performance<br/></td>
     <td>Session level SQL plan cache (experimental)</td>
     <td>Using plan cache can reduce the time for compiling and optimizing SQL queries, which reduces query latency. For each query executed, if a plan doesn't exist, a new one will be stored and re-used next time.</td>
   </tr>
@@ -32,7 +32,7 @@ TiDB 版本：7.0.0 -[DMR](/releases/versioning.md#开发里程碑版本)
     <td>TiFlash introduces a new architecture: 1. Disaggregate TiFlash's compute and storage which is a milestone for elastic HTAP resource utilization, and 2. Introduces S3 based storage engine which can provide shared storage at lower cost.</td>
   </tr>
   <tr>
-    <td rowspan="2">Reliability and Availability<br></td>
+    <td rowspan="2">Reliability and Availability<br/></td>
     <td>Resource control enhancement(GA) </td>
     <td>Users can now use resource groups to allocate and isolate resources for different applications or workloads in one cluster. This supports different resource binding modes (user, session, query) and user-defined priority. Quotas can be "burstable".</td>
   </tr>
@@ -50,13 +50,13 @@ TiDB 版本：7.0.0 -[DMR](/releases/versioning.md#开发里程碑版本)
     <td>REORGANIZE PARTITION clause can be used for merging adjacent partitions or spliting one to many, which  provides users with better usability of partitioned tables.</td>
   </tr>
   <tr>
-    <td rowspan="2">DB Operations and Observability<br></td>
+    <td rowspan="2">DB Operations and Observability<br/></td>
     <td>TiDB integrates Lightning by “load data” statement(experimental)</td>
-    <td>Load data sql statement becomes more powerful by integrating Lightning TiDB backend, such as supporting data import from S3/GCS, supporting task management and so on.<br></td>
+    <td>Load data sql statement becomes more powerful by integrating Lightning TiDB backend, such as supporting data import from S3/GCS, supporting task management and so on.<br/></td>
   </tr>
   <tr>
     <td>TiCDC supports object storage sink(GA)</td>
-    <td>TiCDC supports saving row change events to storage services, including Amazon S3, Azure Blob Storage, and NFS<br></td>
+    <td>TiCDC supports saving row change events to storage services, including Amazon S3, Azure Blob Storage, and NFS<br/></td>
   </tr>
 </tbody>
 </table>
