@@ -15,52 +15,52 @@ TiDB 版本：7.0.0 -[DMR](/releases/versioning.md#开发里程碑版本)
 <table>
 <thead>
   <tr>
-    <th>Category</th>
-    <th>Feature/Enhancement</th>
-    <th>Description</th>
+    <th>分类</th>
+    <th>功能</th>
+    <th>描述</th>
   </tr>
 </thead>
 <tbody>
   <tr>
-    <td rowspan="2">Scalability and Performance<br/></td>
-    <td>Session level SQL plan cache (experimental)</td>
-    <td>Using plan cache can reduce the time for compiling and optimizing SQL queries, which reduces query latency. For each query executed, if a plan doesn't exist, a new one will be stored and re-used next time.</td>
+    <td rowspan="2">可扩展性与性能</td>
+    <td>会话级 SQL Plan Cache（实验特性）</td>
+    <td>使用计划缓存可以减少编译和优化 SQL 查询的时间，从而减少查询延迟。对于每个执行的查询，如果计划不存在，则会存储一个新的计划并在下一次重用。</td>
   </tr>
   <tr>
-    <td>TiFlash supports storage-computing separation and S3 shared storage (experimental)</td>
-    <td>TiFlash introduces a new architecture:
+    <td>TiFlash 支持存储计算分离和 S3 共享存储（实验特性）</td>
+    <td>TiFlash 引入了全新的架构：
       <ol>
-        <li>Disaggregate TiFlash's compute and storage which is a milestone for elastic HTAP resource utilization.</li>
-        <li>Introduces S3 based storage engine which can provide shared storage at lower cost.</li>
+        <li>分离 TiFlash 的计算和存储是弹性 HTAP 资源利用的重要里程碑。</li>
+        <li>引入基于 S3 的存储引擎，可以以更低的成本提供共享存储。</li>
       </ol>
     </td>
   </tr>
   <tr>
-    <td rowspan="2">Reliability and Availability<br/></td>
-    <td>Resource control enhancement (GA) </td>
-    <td>Users can now use resource groups to allocate and isolate resources for different applications or workloads in one cluster. This supports different resource binding modes (user, session, query) and user-defined priority. Quotas can be "burstable".</td>
+    <td rowspan="2">稳定性与高可用</td>
+    <td>资源控制增强 (GA) </td>
+    <td>用户现在可以使用资源组为一群集群中的不同应用程序或工作负载分配和隔离资源。这支持不同的资源绑定模式 (用户、会话、查询) 和用户定义的优先级。配额可以“突发”。</td>
   </tr>
   <tr>
-    <td>TiFlash support spill to disk</td>
-    <td>TiFlash supports intermediate result spill to disk to mitigate OOMs in data-intensive operations like aggregations, sorts and hash joins.</td>
+    <td>TiFlash 支持数据落盘</td>
+    <td>TiFlash 支持将中间结果落盘，以缓解数据密集型操作（如聚合、排序和 Hash Join）中的 OOM 问题。</td>
   </tr>
   <tr>
     <td rowspan="2">SQL</td>
-    <td>Row-level TTL (GA)</td>
-    <td>Manage database size and improve performance by automatically expiring data of a certain age.</td>
+    <td>行级 TTL (GA)</td>
+    <td>通过自动过期指定生命周期的数据，管理数据库大小并提高性能。</td>
   </tr>
   <tr>
-    <td>Reorganize LIST/RANGE partition</td>
-    <td>REORGANIZE PARTITION clause can be used for merging adjacent partitions or spliting one to many, which  provides users with better usability of partitioned tables.</td>
+    <td>重新组织 `LIST`/`RANGE` 分区</td>
+    <td>`REORGANIZE PARTITION` 语句可用于合并相邻分区，或将一个分区拆分为多个分区，从而为用户提供更好的分区表可用性。</td>
   </tr>
   <tr>
-    <td rowspan="2">DB Operations and Observability<br/></td>
-    <td>TiDB integrates Lightning by “load data” statement(experimental)</td>
-    <td>Load data sql statement becomes more powerful by integrating Lightning TiDB backend, such as supporting data import from S3/GCS, supporting task management and so on.<br/></td>
+    <td rowspan="2">数据库管理与可观测性<br/></td>
+    <td>TiDB 通过 `LOAD DATA` 语句集成 TiDB Lightning（实验特性）</td>
+    <td>集成 Lightning TiDB 后端使加载数据的 SQL 语句更加强大，例如支持从 S3/GCS 导入数据、支持任务管理等。</td>
   </tr>
   <tr>
-    <td>TiCDC supports object storage sink (GA)</td>
-    <td>TiCDC supports saving row change events to storage services, including Amazon S3, Azure Blob Storage, and NFS<br/></td>
+    <td>TiCDC 支持对象存储 Sink (GA)</td>
+    <td>TiCDC 支持将行变更事件保存到存储服务，包括 Amazon S3、Azure Blob 存储和 NFS</td>
   </tr>
 </tbody>
 </table>
