@@ -4,7 +4,7 @@
 - [文档中心](https://docs.pingcap.com/zh)
 - 关于 TiDB
   - [TiDB 简介](/overview.md)
-  - [TiDB 6.2 Release Notes](/releases/release-6.2.0.md)
+  - [TiDB 7.0 Release Notes](/releases/release-7.0.0.md)
   - [基本功能](/basic-features.md)
   - [实验特性](/experimental-features.md)
   - 性能测试报告
