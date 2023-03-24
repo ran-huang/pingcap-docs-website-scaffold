@@ -4,13 +4,13 @@ title: TiDB 7.0.0 Release Notes
 
 # TiDB 7.0.0  Release Notes
 
-发版日期：2023 年 X 月 x 日
+Release date: xx, 2023
 
-TiDB 版本：7.0.0 -[DMR](/releases/versioning.md#开发里程碑版本)
+TiDB version: 7.0.0-DMR
 
-试用链接：[快速体验](https://docs.pingcap.com/zh/tidb/v6.6/quick-start-with-tidb) | [下载离线包](https://cn.pingcap.com/product-community/)
+Quick access: Quick start | Installation package
 
-在 7.0.0 版本中，你可以获得以下关键特性：
+In v7.0.0-DMR, the key new features and improvements are as follows:
 
 <table>
 <thead>
