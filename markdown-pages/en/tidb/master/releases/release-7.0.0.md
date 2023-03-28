@@ -29,10 +29,10 @@ In v7.0.0-DMR, the key new features and improvements are as follows:
   <tr>
     <td>TiFlash supports storage-computing separation and S3 shared storage (experimental)</td>
     <td>TiFlash introduces a cloud-native architecture as an option:
-      <ol>
-        <li>Disaggregate TiFlash's compute and storage which is a milestone for elastic HTAP resource utilization.</li>
+      <ul>
+        <li>Disaggregates TiFlash's compute and storage which is a milestone for elastic HTAP resource utilization.</li>
         <li>Introduces S3 based storage engine which can provide shared storage at lower cost.</li>
-      </ol>
+      </ul>
     </td>
   </tr>
   <tr>
@@ -50,13 +50,13 @@ In v7.0.0-DMR, the key new features and improvements are as follows:
     <td>Manage database size and improve performance by automatically expiring data of a certain age.</td>
   </tr>
   <tr>
-    <td>Reorganize LIST/RANGE partition</td>
-    <td>REORGANIZE PARTITION clause can be used for merging adjacent partitions or spliting one to many, which  provides users with better usability of partitioned tables.</td>
+    <td>Reorganize `LIST`/`RANGE` partition</td>
+    <td>`REORGANIZE PARTITION` clause can be used for merging adjacent partitions or splitting one to many, which  provides users with better usability of partitioned tables.</td>
   </tr>
   <tr>
     <td rowspan="2">DB Operations and Observability<br/></td>
     <td>TiDB integrates Lightning by “load data” statement(experimental)</td>
-    <td>Load data sql statement becomes more powerful by integrating Lightning TiDB backend, such as supporting data import from S3/GCS, supporting task management and so on.<br/></td>
+    <td>The `LOAD DATA` SQL statement becomes more powerful by integrating TiDB Lightning's logical import mode, such as supporting data import from S3/GCS and supporting task management.<br/></td>
   </tr>
   <tr>
     <td>TiCDC supports object storage sink (GA)</td>
