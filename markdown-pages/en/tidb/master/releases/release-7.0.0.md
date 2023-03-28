@@ -50,13 +50,13 @@ In v7.0.0-DMR, the key new features and improvements are as follows:
     <td>Manage database size and improve performance by automatically expiring data of a certain age.</td>
   </tr>
   <tr>
-    <td>Reorganize `LIST`/`RANGE` partition</td>
-    <td>`REORGANIZE PARTITION` clause can be used for merging adjacent partitions or splitting one to many, which  provides users with better usability of partitioned tables.</td>
+    <td>Reorganize <code>LIST</code>/<code>RANGE</code> partition</td>
+    <td><code>REORGANIZE PARTITION</code> clause can be used for merging adjacent partitions or splitting one to many, which  provides users with better usability of partitioned tables.</td>
   </tr>
   <tr>
     <td rowspan="2">DB Operations and Observability<br/></td>
     <td>TiDB integrates Lightning by “load data” statement(experimental)</td>
-    <td>The `LOAD DATA` SQL statement becomes more powerful by integrating TiDB Lightning's logical import mode, such as supporting data import from S3/GCS and supporting task management.<br/></td>
+    <td>The <code>LOAD DATA</code> SQL statement becomes more powerful by integrating TiDB Lightning's logical import mode, such as supporting data import from S3/GCS and supporting task management.<br/></td>
   </tr>
   <tr>
     <td>TiCDC supports object storage sink (GA)</td>

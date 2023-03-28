@@ -51,11 +51,11 @@ TiDB 版本：7.0.0 -[DMR](/releases/versioning.md#开发里程碑版本)
   </tr>
   <tr>
     <td>支持 Reorganize Partition 语法（List/Range 分区表）</td>
-    <td>`REORGANIZE PARTITION` 语句可用于合并相邻分区，或将一个分区拆分为多个分区，从而提升分区表的易用性。</td>
+    <td><code>REORGANIZE PARTITION</code> 语句可用于合并相邻分区，或将一个分区拆分为多个分区，从而提升分区表的易用性。</td>
   </tr>
   <tr>
     <td rowspan="2">数据库管理与可观测性<br/></td>
-    <td>TiDB 通过 `LOAD DATA` 语句集成 TiDB Lightning（实验特性）</td>
+    <td>TiDB 通过 <code>LOAD DATA</code> 语句集成 TiDB Lightning（实验特性）</td>
     <td>集成 TiDB Lightning 的逻辑导入模式使加载数据的 SQL 语句更加强大，例如支持从 S3/GCS 导入数据、支持任务管理等。</td>
   </tr>
   <tr>
