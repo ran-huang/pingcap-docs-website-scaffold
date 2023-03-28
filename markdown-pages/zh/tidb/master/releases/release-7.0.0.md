@@ -60,7 +60,7 @@ TiDB 版本：7.0.0 -[DMR](/releases/versioning.md#开发里程碑版本)
   </tr>
   <tr>
     <td>TiCDC 支持对象存储 Sink (GA)</td>
-    <td>TiCDC 支持将行变更事件同步到对象存储服务，包括 Amazon S3、Azure Blob Storage 和 NFS 等。/td>
+    <td>TiCDC 支持将行变更事件同步到对象存储服务，包括 Amazon S3、Azure Blob Storage 和 NFS 等。</td>
   </tr>
 </tbody>
 </table>
