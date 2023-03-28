@@ -23,12 +23,12 @@ In v7.0.0-DMR, the key new features and improvements are as follows:
 <tbody>
   <tr>
     <td rowspan="2">Scalability and Performance<br/></td>
-    <td>Session level SQL plan cache (experimental)</td>
-    <td>Using plan cache can reduce the time for compiling and optimizing SQL queries, which reduces query latency. For each query executed, if a plan doesn't exist, a new one will be stored and re-used next time.</td>
+    <td>Session level non-prepared SQL plan cache (experimental)</td>
+    <td>Automatically re-using plan cache can reduce the time for compiling and optimizing the same SQL query patterns, which can reduce query latency without manually setting prepare statements in advance.</td>
   </tr>
   <tr>
     <td>TiFlash supports storage-computing separation and S3 shared storage (experimental)</td>
-    <td>TiFlash introduces a new architecture:
+    <td>TiFlash introduces a cloud-native architecture as an option:
       <ol>
         <li>Disaggregate TiFlash's compute and storage which is a milestone for elastic HTAP resource utilization.</li>
         <li>Introduces S3 based storage engine which can provide shared storage at lower cost.</li>
@@ -38,7 +38,7 @@ In v7.0.0-DMR, the key new features and improvements are as follows:
   <tr>
     <td rowspan="2">Reliability and Availability<br/></td>
     <td>Resource control enhancement (GA) </td>
-    <td>Users can now use resource groups to allocate and isolate resources for different applications or workloads in one cluster. This supports different resource binding modes (user, session, query) and user-defined priority. Quotas can be "burstable".</td>
+    <td>Users now can use resource groups to allocate and isolate resources for various applications or workloads within one cluster. In this release, TiDB adds support for different resource binding modes (user, session, query) and user-defined priorities. Additionally, users can also use commands to perform resource calibration (estimation for the whole resource amount).</td>
   </tr>
   <tr>
     <td>TiFlash support spill to disk</td>
@@ -60,7 +60,7 @@ In v7.0.0-DMR, the key new features and improvements are as follows:
   </tr>
   <tr>
     <td>TiCDC supports object storage sink (GA)</td>
-    <td>TiCDC supports saving row change events to storage services, including Amazon S3, Azure Blob Storage, and NFS<br/></td>
+    <td>TiCDC supports saving row change events to object storage services, including Amazon S3, Azure Blob Storage, and NFS.<br/></td>
   </tr>
 </tbody>
 </table>
