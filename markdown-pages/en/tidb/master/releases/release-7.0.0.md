@@ -16,7 +16,7 @@ In 7.0.0-DMR, the key new features and improvements are as follows:
 <thead>
   <tr>
     <th>Category</th>
-    <th>Feature/Enhancement</th>
+    <th>Feature</th>
     <th>Description</th>
   </tr>
 </thead>
@@ -37,7 +37,7 @@ In 7.0.0-DMR, the key new features and improvements are as follows:
   </tr>
   <tr>
     <td rowspan="2">Reliability and Availability<br/></td>
-    <td>Resource control enhancement (GA) </td>
+    <td>Resource control enhancement (Experimental) </td>
     <td>Support using resource groups to allocate and isolate resources for various applications or workloads within one cluster. In this release, TiDB adds support for different resource binding modes (user, session, and query level) and user-defined priorities. Additionally, you can also use commands to perform resource calibration (estimation for the whole resource amount).</td>
   </tr>
   <tr>
