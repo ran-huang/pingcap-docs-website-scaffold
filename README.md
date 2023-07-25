@@ -6,42 +6,20 @@ To create a **production** build, you can run the `./build.sh` script.
 
 To create a **development** build, you can run the `./build.sh` script with `dev` or `develop` argument.
 
-## Workflow
+## How to preview multiple PRs?
 
-### Overview
+1. Create a new branch from the `mult-pr-preview` branch.
 
-![image](https://user-images.githubusercontent.com/56986964/183846841-d8a0027d-21cf-4d73-970d-89df0e456102.png)
+    Note: the new branch name cannot be `preview/**`, `preview-cloud/**`, or `preview-operator/**`.
 
-### How Docs Staging Update Itself
+2. Configure the following files:
 
-#### 1. Trigger by event from Docs Source Repo
+    - `sync_mult_prs.sh`: Replace `{PR_NUMBER_x}` and `{release-x.y}` with the actual PR numbers and release version you want to preview.
+    - `preview-mult-pr.yml`: Set the schedule for automatic PR preview.
+    - `docs.json` (optional): Add a new entry for the release version you're previewing or update the existing configuration, such as the stable version.
 
-![image](https://user-images.githubusercontent.com/56986964/183847182-73d83a99-5af3-43aa-9bfa-e0e2d3cbe2f2.png)
+3. Set the new branch as the default branch for the repository.
 
-#### 2. Trigger by event manually
+4. Manually trigger the `preview-mult-pr.yml` workflow to preview the PRs and validate the configuration.
 
-![image](https://user-images.githubusercontent.com/56986964/183847213-bc18a345-f17b-473f-84a9-ca05215be3b7.png)
-
-## Config Actions Secrets
-
-### 1. Install `Surge.sh` CLI
-
-```bash
-npm install --global surge
-```
-
-### 2. Login `Surge.sh`
-
-```bash
-surge login
-```
-
-### 3. Create `Surge.sh` Token
-
-```bash
-surge token
-```
-
-### 4. Config `Surge.sh` Token
-
-Visit `<Your Repo URL>/settings/secrets/actions` and add `SURGE_TOKEN` with the token you just created.
+After setup, the workflow will automatically run on the schedule defined in `preview-mult-pr.yml` to preview the PRs.
