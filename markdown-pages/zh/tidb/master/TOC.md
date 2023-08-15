@@ -21,11 +21,21 @@
     - [使用 TiDB Serverless 构建 TiDB 集群](/develop/dev-guide-build-cluster-in-cloud.md)
     - [使用 TiDB 的增删改查 SQL](/develop/dev-guide-tidb-crud-sql.md)
   - 示例程序
-    - [Golang](/develop/dev-guide-sample-application-golang.md)
-    - [Java (Spring Boot)](/develop/dev-guide-sample-application-spring-boot.md)
-    - [Java](/develop/dev-guide-sample-application-java.md)
-    - [Python (Django)](/develop/dev-guide-sample-application-django.md)
-    - [Python](/develop/dev-guide-sample-application-python.md)
+    - Java
+      - [JDBC](/develop/dev-guide-sample-application-java-jdbc.md)
+      - [MyBatis](/develop/dev-guide-sample-application-java-mybatis.md)
+      - [Hibernate](/develop/dev-guide-sample-application-java-hibernate.md)
+      - [Spring Boot](/develop/dev-guide-sample-application-java-spring-boot.md)
+    - Go
+      - [Go-MySQL-Driver](/develop/dev-guide-sample-application-golang-sql-driver.md)
+      - [GORM](/develop/dev-guide-sample-application-golang-gorm.md)
+    - Python
+      - [mysqlclient](/develop/dev-guide-sample-application-python-mysqlclient.md)
+      - [MySQL Connector/Python](/develop/dev-guide-sample-application-python-mysql-connector.md)
+      - [PyMySQL](/develop/dev-guide-sample-application-python-pymysql.md)
+      - [SQLAlchemy](/develop/dev-guide-sample-application-python-sqlalchemy.md)
+      - [peewee](/develop/dev-guide-sample-application-python-peewee.md)
+      - [Django](/develop/dev-guide-sample-application-python-django.md)
   - 连接到 TiDB
     - [选择驱动或 ORM 框架](/develop/dev-guide-choose-driver-or-orm.md)
     - [连接到 TiDB](/develop/dev-guide-connect-to-tidb.md)
@@ -1003,6 +1013,7 @@
   - v7.2
     - [7.2.0-DMR](/releases/release-7.2.0.md)
   - v7.1
+    - [7.1.1](/releases/release-7.1.1.md)
     - [7.1.0](/releases/release-7.1.0.md)
   - v7.0
     - [7.0.0-DMR](/releases/release-7.0.0.md)
