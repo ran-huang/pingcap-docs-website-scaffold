@@ -4,7 +4,7 @@
 - [Docs Home](https://docs.pingcap.com/)
 - About TiDB
   - [TiDB Introduction](/overview.md)
-  - [TiDB 7.1 Release Notes](/releases/release-7.1.0.md)
+  - [TiDB 7.4 Release Notes](/releases/release-7.4.0.md)
   - [Features](/basic-features.md)
   - [MySQL Compatibility](/mysql-compatibility.md)
   - [TiDB Limitations](/tidb-limitations.md)
@@ -156,7 +156,7 @@
     - [Use TiUP](/upgrade-tidb-using-tiup.md)
     - [Use TiDB Operator](https://docs.pingcap.com/tidb-in-kubernetes/stable/upgrade-a-tidb-cluster)
     - [TiDB Smooth Upgrade](/smooth-upgrade-tidb.md)
-    - [TiFlash v6.2.0 Upgrade Guide](/tiflash-620-upgrade-guide.md)
+    - [TiFlash Upgrade Guide](/tiflash-upgrade-guide.md)
   - Scale
     - [Use TiUP (Recommended)](/scale-tidb-using-tiup.md)
     - [Use TiDB Operator](https://docs.pingcap.com/tidb-in-kubernetes/stable/scale-a-tidb-cluster)
@@ -287,6 +287,7 @@
         - [Wrong Index Solution](/wrong-index-solution.md)
         - [Distinct Optimization](/agg-distinct-optimization.md)
         - [Cost Model](/cost-model.md)
+        - [Runtime Filter](/runtime-filter.md)
       - [Prepared Execution Plan Cache](/sql-prepared-plan-cache.md)
       - [Non-Prepared Execution Plan Cache](/sql-non-prepared-plan-cache.md)
     - Control Execution Plans
@@ -550,6 +551,7 @@
       - Create Changefeeds
         - [Replicate Data to MySQL-compatible Databases](/ticdc/ticdc-sink-to-mysql.md)
         - [Replicate Data to Kafka](/ticdc/ticdc-sink-to-kafka.md)
+        - [Replicate Data to Pulsar](/ticdc/ticdc-sink-to-pulsar.md)
         - [Replicate Data to Storage Services](/ticdc/ticdc-sink-to-cloud-storage.md)
       - [Manage Changefeeds](/ticdc/ticdc-manage-changefeed.md)
       - [Log Filter](/ticdc/ticdc-filter.md)
@@ -637,6 +639,7 @@
     - [Spill to Disk](/tiflash/tiflash-spill-disk.md)
     - [Data Validation](/tiflash/tiflash-data-validation.md)
     - [Compatibility](/tiflash/tiflash-compatibility.md)
+    - [Pipeline Execution Model](/tiflash/tiflash-pipeline-model.md)
   - [System Variables](/system-variables.md)
   - Configuration File Parameters
     - [tidb-server](/tidb-configuration-file.md)
@@ -696,7 +699,9 @@
       - [`ADMIN CHECKSUM TABLE`](/sql-statements/sql-statement-admin-checksum-table.md)
       - [`ADMIN CHECK [TABLE|INDEX]`](/sql-statements/sql-statement-admin-check-table-index.md)
       - [`ADMIN CLEANUP`](/sql-statements/sql-statement-admin-cleanup.md)
+      - [`ADMIN PAUSE DDL`](/sql-statements/sql-statement-admin-pause-ddl.md)
       - [`ADMIN RECOVER INDEX`](/sql-statements/sql-statement-admin-recover.md)
+      - [`ADMIN RESUME DDL`](/sql-statements/sql-statement-admin-resume-ddl.md)
       - [`ADMIN SHOW DDL [JOBS|JOB QUERIES]`](/sql-statements/sql-statement-admin-show-ddl.md)
       - [`ADMIN SHOW TELEMETRY`](/sql-statements/sql-statement-admin-show-telemetry.md)
       - [`ALTER DATABASE`](/sql-statements/sql-statement-alter-database.md)
@@ -712,6 +717,7 @@
       - [`BATCH`](/sql-statements/sql-statement-batch.md)
       - [`BEGIN`](/sql-statements/sql-statement-begin.md)
       - [`CALIBRATE RESOURCE`](/sql-statements/sql-statement-calibrate-resource.md)
+      - [`CANCEL IMPORT JOB`](/sql-statements/sql-statement-cancel-import-job.md)
       - [`CHANGE COLUMN`](/sql-statements/sql-statement-change-column.md)
       - [`COMMIT`](/sql-statements/sql-statement-commit.md)
       - [`CHANGE DRAINER`](/sql-statements/sql-statement-change-drainer.md)
@@ -755,6 +761,7 @@
       - [`FLUSH TABLES`](/sql-statements/sql-statement-flush-tables.md)
       - [`GRANT <privileges>`](/sql-statements/sql-statement-grant-privileges.md)
       - [`GRANT <role>`](/sql-statements/sql-statement-grant-role.md)
+      - [`IMPORT INTO`](/sql-statements/sql-statement-import-into.md)
       - [`INSERT`](/sql-statements/sql-statement-insert.md)
       - [`KILL [TIDB]`](/sql-statements/sql-statement-kill.md)
       - [`LOAD DATA`](/sql-statements/sql-statement-load-data.md)
@@ -763,6 +770,7 @@
       - [`LOCK TABLES` and `UNLOCK TABLES`](/sql-statements/sql-statement-lock-tables-and-unlock-tables.md)
       - [`MODIFY COLUMN`](/sql-statements/sql-statement-modify-column.md)
       - [`PREPARE`](/sql-statements/sql-statement-prepare.md)
+      - [`QUERY WATCH`](/sql-statements/sql-statement-query-watch.md)
       - [`RECOVER TABLE`](/sql-statements/sql-statement-recover-table.md)
       - [`RENAME USER`](/sql-statements/sql-statement-rename-user.md)
       - [`RENAME INDEX`](/sql-statements/sql-statement-rename-index.md)
@@ -801,6 +809,7 @@
       - [`SHOW ERRORS`](/sql-statements/sql-statement-show-errors.md)
       - [`SHOW [FULL] FIELDS FROM`](/sql-statements/sql-statement-show-fields-from.md)
       - [`SHOW GRANTS`](/sql-statements/sql-statement-show-grants.md)
+      - [`SHOW IMPORT JOB`](/sql-statements/sql-statement-show-import-job.md)
       - [`SHOW INDEX [FROM|IN]`](/sql-statements/sql-statement-show-index.md)
       - [`SHOW INDEXES [FROM|IN]`](/sql-statements/sql-statement-show-indexes.md)
       - [`SHOW KEYS [FROM|IN]`](/sql-statements/sql-statement-show-keys.md)
@@ -857,6 +866,7 @@
       - [Information Functions](/functions-and-operators/information-functions.md)
       - [JSON Functions](/functions-and-operators/json-functions.md)
       - [Aggregate (GROUP BY) Functions](/functions-and-operators/aggregate-group-by-functions.md)
+      - [GROUP BY Modifiers](/functions-and-operators/group-by-modifier.md)
       - [Window Functions](/functions-and-operators/window-functions.md)
       - [Miscellaneous Functions](/functions-and-operators/miscellaneous-functions.md)
       - [Precision Math](/functions-and-operators/precision-math.md)
@@ -889,6 +899,7 @@
       - INFORMATION_SCHEMA
         - [Overview](/information-schema/information-schema.md)
         - [`ANALYZE_STATUS`](/information-schema/information-schema-analyze-status.md)
+        - [`CHECK_CONSTRAINTS`](/information-schema/information-schema-check-constraints.md)
         - [`CLIENT_ERRORS_SUMMARY_BY_HOST`](/information-schema/client-errors-summary-by-host.md)
         - [`CLIENT_ERRORS_SUMMARY_BY_USER`](/information-schema/client-errors-summary-by-user.md)
         - [`CLIENT_ERRORS_SUMMARY_GLOBAL`](/information-schema/client-errors-summary-global.md)
@@ -919,6 +930,7 @@
         - [`PROCESSLIST`](/information-schema/information-schema-processlist.md)
         - [`REFERENTIAL_CONSTRAINTS`](/information-schema/information-schema-referential-constraints.md)
         - [`RESOURCE_GROUPS`](/information-schema/information-schema-resource-groups.md)
+        - [`RUNAWAY_WATCHES`](/information-schema/information-schema-runaway-watches.md)
         - [`SCHEMATA`](/information-schema/information-schema-schemata.md)
         - [`SEQUENCES`](/information-schema/information-schema-sequences.md)
         - [`SESSION_VARIABLES`](/information-schema/information-schema-session-variables.md)
@@ -943,6 +955,9 @@
         - [`VARIABLES_INFO`](/information-schema/information-schema-variables-info.md)
         - [`VIEWS`](/information-schema/information-schema-views.md)
       - [`METRICS_SCHEMA`](/metrics-schema.md)
+      - PERFORMANCE_SCHEMA
+        - [Overview](/performance-schema/performance-schema.md)
+        - [`SESSION_CONNECT_ATTRS`](/performance-schema/performance-schema-session-connect-attrs.md)
     - [Metadata Lock](/metadata-lock.md)
   - UI
     - TiDB Dashboard
@@ -983,6 +998,7 @@
   - [URI Formats of External Storage Services](/external-storage-uri.md)
   - Internal Components
     - [TiDB Backend Task Distributed Execution Framework](/tidb-distributed-execution-framework.md)
+    - [TiDB Global Sort](/tidb-global-sort.md)
 - FAQs
   - [FAQ Summary](/faq/faq-overview.md)
   - [TiDB FAQs](/faq/tidb-faq.md)
@@ -1000,6 +1016,12 @@
   - [Release Timeline](/releases/release-timeline.md)
   - [TiDB Versioning](/releases/versioning.md)
   - [TiDB Installation Packages](/binary-package.md)
+  - v7.4
+    - [7.4.0-DMR](/releases/release-7.4.0.md)
+  - v7.3
+    - [7.3.0-DMR](/releases/release-7.3.0.md)
+  - v7.2
+    - [7.2.0-DMR](/releases/release-7.2.0.md)
   - v7.1
     - [7.1.2](/releases/release-7.1.2.md)
     - [7.1.1](/releases/release-7.1.1.md)
