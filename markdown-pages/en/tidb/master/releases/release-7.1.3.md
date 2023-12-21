@@ -21,10 +21,6 @@ Quick access: [Quick start](https://docs.pingcap.com/tidb/v7.1/quick-start-with-
 
 ## Improvements
 
-+ TiKV
-
-    - Add the `Max gap of safe-ts` and `Min safe ts region` metrics and introduce the `tikv-ctl get-region-read-progress` command to better observe and diagnose the status of resolved-ts and safe-ts [#15082](https://github.com/tikv/tikv/issues/15082) @[ekexium](https://github.com/ekexium)
-
 + PD
 
     - Enhance the configuration retrieval method of the resource control client to dynamically fetch the latest configurations [#7043](https://github.com/tikv/pd/issues/7043) @[nolouch](https://github.com/nolouch)
@@ -42,7 +38,7 @@ Quick access: [Quick start](https://docs.pingcap.com/tidb/v7.1/quick-start-with-
 
         - Optimize the memory consumption when TiCDC nodes replicate data to TiDB [#9935](https://github.com/pingcap/tiflow/issues/9935) @[3AceShowHand](https://github.com/3AceShowHand)
         - Optimize some alarm rules [#9266](https://github.com/pingcap/tiflow/issues/9266) @[asddongmen](https://github.com/asddongmen)
-        - Optimize the performance of redo log, including parallel writing data to S3 and adopting lz4 compression algorithm [#10176](https://github.com/pingcap/tiflow/issues/10176)[#10226](https://github.com/pingcap/tiflow/issues/10226) @[sdojjy](https://github.com/sdojjy)
+        - Optimize the performance of redo log, including parallel writing data to S3 and adopting lz4 compression algorithm [#10176](https://github.com/pingcap/tiflow/issues/10176) [#10226](https://github.com/pingcap/tiflow/issues/10226) @[sdojjy](https://github.com/sdojjy)
         - Improve the performance of TiCDC replicating data to object storage by increasing parallelism [#10098](https://github.com/pingcap/tiflow/issues/10098) @[CharlesCheung96](https://github.com/CharlesCheung96)
         - Reduce the impact of TiCDC incremental scanning on upstream TiKV [#11390](https://github.com/tikv/tikv/issues/11390) @[hicqu](https://github.com/hicqu)
         - Support making TiCDC Canal-JSON content format [compatible with the content format of the official Canal output](https://docs.pingcap.com/tidb/v6.5/ticdc-canal-json#compatibility-with-the-official-canal) by setting `content-compatible=true` in the `sink-uri` configuration [#10106](https://github.com/pingcap/tiflow/issues/10106) @[3AceShowHand](https://github.com/3AceShowHand)
@@ -71,7 +67,7 @@ Quick access: [Quick start](https://docs.pingcap.com/tidb/v7.1/quick-start-with-
     - Fix the issue that tables with `AUTO_ID_CACHE=1` might lead to gRPC client leaks when there are a large number of tables [#48869](https://github.com/pingcap/tidb/issues/48869) @[tiancaiamao](https://github.com/tiancaiamao)
     - Fix the incorrect error message for `ErrLoadDataInvalidURI` (invalid S3 URI error) [#48164](https://github.com/pingcap/tidb/issues/48164) @[lance6716](https://github.com/lance6716)
     - Fix the issue that executing `ALTER TABLE ... LAST PARTITION` fails when the partition column type is `DATETIME` [#48814](https://github.com/pingcap/tidb/issues/48814) @[crazycs520](https://github.com/crazycs520)
-    - Fix the issue that the actual error message during `IMPORT INTO` execution might be overridden by other error messages [#47992](https://github.com/pingcap/tidb/issues/47992)，[#47781](https://github.com/pingcap/tidb/issues/47781) @[D3Hunter](https://github.com/D3Hunter)
+    - Fix the issue that the actual error message during `IMPORT INTO` execution might be overridden by other error messages [#47992](https://github.com/pingcap/tidb/issues/47992) [#47781](https://github.com/pingcap/tidb/issues/47781) @[D3Hunter](https://github.com/D3Hunter)
     - Fix the issue that TiDB deployed in the cgroup v2 container cannot be detected [#48342](https://github.com/pingcap/tidb/issues/48342) @[D3Hunter](https://github.com/D3Hunter)
     - Fix the issue that executing `UNION ALL` with the DUAL table as the first subnode might cause an error [#48755](https://github.com/pingcap/tidb/issues/48755) @[winoros](https://github.com/winoros)
     - Fix the TiDB node panic issue that occurs when DDL `jobID` is restored to 0 [#46296](https://github.com/pingcap/tidb/issues/46296) @[jiyfhust](https://github.com/jiyfhust)
@@ -92,12 +88,11 @@ Quick access: [Quick start](https://docs.pingcap.com/tidb/v7.1/quick-start-with-
 + TiKV
 
     - Fix the issue that if TiKV runs extremely slowly, it might panic after Region merge [#16111](https://github.com/tikv/tikv/issues/16111) @[overvenus](https://github.com/overvenus)
-    - Fix the issue that Resolved TS might be blocked for two hours [#15520](https://github.com/tikv/tikv/issues/15520) @[overvenus](https://github.com/overvenus)
+    - Fix the issue that Resolved TS might be blocked for two hours [#15520](https://github.com/tikv/tikv/issues/15520) [#39130](https://github.com/pingcap/tidb/issues/39130) @[overvenus](https://github.com/overvenus)
     - Fix the issue that TiKV reports the `ServerIsBusy` error because it can not append the raft log [#15800](https://github.com/tikv/tikv/issues/15800) @[tonyxuqqi](https://github.com/tonyxuqqi)
     - Fix the issue that snapshot restore might get stuck when BR crashes [#15684](https://github.com/tikv/tikv/issues/15684) @[YuJuncen](https://github.com/YuJuncen)
     - Fix the issue that Resolved TS in stale read might cause TiKV OOM issues when tracking large transactions [#14864](https://github.com/tikv/tikv/issues/14864) @[overvenus](https://github.com/overvenus)
     - Fix the issue that damaged SST files might be spreaded to other TiKV nodes [#15986](https://github.com/tikv/tikv/issues/15986) @[Connor1996](https://github.com/Connor1996)
-    - Fix the issue that resolved-ts might be blocked for 2 hours [#39130](https://github.com/pingcap/tidb/issues/39130) @[overvenus](https://github.com/overvenus)
     - Fix the issue that the joint state of DR Auto-Sync might time out when scaling out [#15817](https://github.com/tikv/tikv/issues/15817) @[Connor1996](https://github.com/Connor1996)
     - Fix the issue that the scheduler command variables are incorrect in Grafana on the cloud environment [#15832](https://github.com/tikv/tikv/issues/15832) @[Connor1996](https://github.com/Connor1996)
     - Fix the issue that stale peers are retained and block resolved-ts after Regions are merged [#15919](https://github.com/tikv/tikv/issues/15919) @[overvenus](https://github.com/overvenus)
@@ -116,7 +111,7 @@ Quick access: [Quick start](https://docs.pingcap.com/tidb/v7.1/quick-start-with-
     - Fix the issue that when PD leader is transferred and there is a network partition between the new leader and the PD client, the PD client fails to update the information of the leader [#7416](https://github.com/tikv/pd/issues/7416) @[CabinfeverB](https://github.com/CabinfeverB)
     - Fix the issue that adding multiple TiKV nodes to a large cluster might cause TiKV heartbeat reporting to become slow or stuck [#7248](https://github.com/tikv/pd/issues/7248) @[rleungx](https://github.com/rleungx)
     - Fix the issue that TiDB Dashboard cannot read PD `trace` data correctly [#7253](https://github.com/tikv/pd/issues/7253) @[nolouch](https://github.com/nolouch)
-    - Upgrade the version of Gin Web Framework from v1.8.1 to v1.9.1 to fix some security issues [#7438](https://github.com/tikv/pd/issues/7438) @[niubell](https://github.com/niubell)
+    - Fix some security issues by upgrading the version of Gin Web Framework from v1.8.1 to v1.9.1 [#7438](https://github.com/tikv/pd/issues/7438) @[niubell](https://github.com/niubell)
     - Fix the issue that the rule checker does not add Learners according to the configuration of Placement Rules [#7185](https://github.com/tikv/pd/issues/7185) @[nolouch](https://github.com/nolouch)
     - Fix the issue that PD might delete normal Peers when TiKV nodes are unavailable [#7249](https://github.com/tikv/pd/issues/7249) @[lhy1024](https://github.com/lhy1024)
     - Fix the issue that it takes a long time to switch the leader in DR Auto-Sync mode [#6988](https://github.com/tikv/pd/issues/6988) @[HuSharp](https://github.com/HuSharp)
@@ -136,14 +131,13 @@ Quick access: [Quick start](https://docs.pingcap.com/tidb/v7.1/quick-start-with-
         - Fix the issue that the default values for BR SQL commands and CLI are different, which might cause OOM issues [#48000](https://github.com/pingcap/tidb/issues/48000) @[YuJuncen](https://github.com/YuJuncen)
         - Fix the issue that the log backup might get stuck in some scenarios when backing up large wide tables [#15714](https://github.com/tikv/tikv/issues/15714) @[YuJuncen](https://github.com/YuJuncen)
         - Fix the issue that BR generates incorrect URIs for external storage files [#48452](https://github.com/pingcap/tidb/issues/48452) @[3AceShowHand](https://github.com/3AceShowHand)
-        - Fix the issue that the retry after an EC2 metadata connection reset cause degraded backup and restore performance [#46750](https://github.com/pingcap/tidb/issues/47650) @[Leavrth](https://github.com/Leavrth)
+        - Fix the issue that the retry after an EC2 metadata connection reset causes degraded backup and restore performance [#46750](https://github.com/pingcap/tidb/issues/47650) @[Leavrth](https://github.com/Leavrth)
         - Fix the issue that the log backup task can start but does not work properly if failing to connect to PD during task initialization [#16056](https://github.com/tikv/tikv/issues/16056) @[YuJuncen](https://github.com/YuJuncen)
 
     + TiCDC
 
         - Fix the issue that the `WHERE` clause does not use the primary key as a condition when replicating `DELETE` statements in certain scenarios [#9812](https://github.com/pingcap/tiflow/issues/9812) @[asddongmen](https://github.com/asddongmen)
-        - Fix the issue of the long interval between replicating DDL statements after enabling the redo log feature [#9960](https://github.com/pingcap/tiflow/issues/9960) @[CharlesCheung96](https://github.com/CharlesCheung96)
-        - Fix the issue that replication tasks get stuck in certain special scenarios when replicating data to object storage [#10041](https://github.com/pingcap/tiflow/issues/10041)[#10044](https://github.com/pingcap/tiflow/issues/10044) @[CharlesCheung96](https://github.com/CharlesCheung96)
+        - Fix the issue that replication tasks get stuck in certain special scenarios when replicating data to object storage [#10041](https://github.com/pingcap/tiflow/issues/10041) [#10044](https://github.com/pingcap/tiflow/issues/10044) @[CharlesCheung96](https://github.com/CharlesCheung96)
         - Fix the issue that replication tasks get stuck in certain special scenarios after enabling sync-point and redo log [#10091](https://github.com/pingcap/tiflow/issues/10091) @[CharlesCheung96](https://github.com/CharlesCheung96)
         - Fix the issue that TiCDC mistakenly closes the connection with TiKV in certain special scenarios [#10239](https://github.com/pingcap/tiflow/issues/10239) @[hicqu](https://github.com/hicqu)
         - Fix the issue that the changefeed cannot replicate DML events in bidirectional replication mode if the target table is dropped and then recreated in upstream [#10079](https://github.com/pingcap/tiflow/issues/10079) @[asddongmen](https://github.com/asddongmen)
